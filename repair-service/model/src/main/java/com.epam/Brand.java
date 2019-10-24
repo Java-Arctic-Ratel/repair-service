@@ -95,4 +95,13 @@ public class Brand {
     public void setDeviceId(Integer deviceId) {
         this.deviceId = deviceId;
     }
+
+    @Override
+    public String toString() {
+        return "Brand{" +
+                "brandId=" + brandId +
+                ", brandName='" + brandName + '\'' +
+                ", deviceId=" + deviceId +
+                '}';
+    }
 }

@@ -118,5 +118,13 @@ public class SpareParts {
         this.orderId = orderId;
     }
 
-
+    @Override
+    public String toString() {
+        return "SpareParts{" +
+                "sparePartsId=" + sparePartsId +
+                ", sparePartsName='" + sparePartsName + '\'' +
+                ", sparePartsCost=" + sparePartsCost +
+                ", orderId=" + orderId +
+                '}';
+    }
 }

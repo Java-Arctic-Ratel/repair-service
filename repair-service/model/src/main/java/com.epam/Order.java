@@ -260,5 +260,23 @@ public class Order {
     public void setStatusId(Integer statusId) {
         this.statusId = statusId;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                ", dateIssue=" + dateIssue +
+                ", costEstimated=" + costEstimated +
+                ", sparePartsId=" + sparePartsId +
+                ", costTotal=" + costTotal +
+                ", clientId=" + clientId +
+                ", executorId=" + executorId +
+                ", statusId=" + statusId +
+                '}';
+    }
+
+
 }
 

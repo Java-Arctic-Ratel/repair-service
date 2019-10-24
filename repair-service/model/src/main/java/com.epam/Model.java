@@ -95,4 +95,13 @@ public class Model {
     public void setDeviceId(Integer deviceId) {
         this.deviceId = deviceId;
     }
+
+    @Override
+    public String toString() {
+        return "Model{" +
+                "modelId=" + modelId +
+                ", modelName='" + modelName + '\'' +
+                ", deviceId=" + deviceId +
+                '}';
+    }
 }
