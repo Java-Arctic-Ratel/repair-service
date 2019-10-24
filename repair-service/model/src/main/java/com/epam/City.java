@@ -43,7 +43,6 @@ public class City {
         return cityName;
     }
 
-
     /**
      * Sets city name.
      *
@@ -52,7 +51,6 @@ public class City {
     public void setCityName(String cityName) {
         this.cityName = cityName;
     }
-
 
     /**
      * Instantiates a new City.
