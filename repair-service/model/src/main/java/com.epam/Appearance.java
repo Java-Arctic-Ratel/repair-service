@@ -18,7 +18,7 @@ public class Appearance {
     private  String appearanceName;
 
     /**
-     * Device condition id is the foreign key (Device condition to appearance).
+     * Device condition id is the foreign key (Appearance to device condition).
      */
     private Integer deviceConditionId;
 
