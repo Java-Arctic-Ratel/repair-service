@@ -112,27 +112,6 @@ public class Executor {
         this.patronymicId = patronymicId;
     }
 
-    /**
-     * Instantiates a new Executor.
-     */
-    public Executor() {
-    }
-
-    /**
-     * Instantiates a new Executor.
-     *
-     * @param executorOrderId the executor order id
-     * @param firstNameId     the first name id
-     * @param lastNameId      the last name id
-     * @param patronymicId    the patronymic id
-     */
-    public Executor(Integer executorOrderId, Integer firstNameId, Integer lastNameId, Integer patronymicId) {
-        this.executorOrderId = executorOrderId;
-        this.firstNameId = firstNameId;
-        this.lastNameId = lastNameId;
-        this.patronymicId = patronymicId;
-    }
-
     @Override
     public String toString() {
         return "Executor{" +

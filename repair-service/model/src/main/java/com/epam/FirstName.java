@@ -52,21 +52,6 @@ public class FirstName {
         this.firstName = firstName;
     }
 
-    /**
-     * Instantiates a new First name.
-     */
-    public FirstName() {
-    }
-
-    /**
-     * Instantiates a new First name.
-     *
-     * @param firstName the first name
-     */
-    public FirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     @Override
     public String toString() {
         return "FirstName{" +

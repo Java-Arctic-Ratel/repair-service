@@ -132,29 +132,6 @@ public class Address {
         this.streetId = streetId;
     }
 
-    /**
-     * Instantiates a new Address.
-     */
-    public Address() {
-    }
-
-    /**
-     * Instantiates a new Address.
-     *
-     * @param houseNumber     the house number
-     * @param apartmentNumber the apartment number
-     * @param clientAddressId the client address id
-     * @param cityId          the city id
-     * @param streetId        the street id
-     */
-    public Address(String houseNumber, String apartmentNumber, Integer clientAddressId, Integer cityId, Integer streetId) {
-        this.houseNumber = houseNumber;
-        this.apartmentNumber = apartmentNumber;
-        this.clientAddressId = clientAddressId;
-        this.cityId = cityId;
-        this.streetId = streetId;
-    }
-
     @Override
     public String toString() {
         return "Address{" +

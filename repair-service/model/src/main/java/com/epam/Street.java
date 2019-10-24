@@ -52,21 +52,6 @@ public class Street {
         this.streetName = streetName;
     }
 
-    /**
-     * Instantiates a new Street.
-     */
-    public Street() {
-    }
-
-    /**
-     * Instantiates a new Street.
-     *
-     * @param streetName the street name
-     */
-    public Street(String streetName) {
-        this.streetName = streetName;
-    }
-
     @Override
     public String toString() {
         return "Street{" +

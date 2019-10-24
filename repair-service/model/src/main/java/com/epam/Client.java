@@ -132,29 +132,6 @@ public class Client {
         this.patronymicId = patronymicId;
     }
 
-    /**
-     * Instantiates a new Client.
-     */
-    public Client() {
-    }
-
-    /**
-     * Instantiates a new Client.
-     *
-     * @param clientPhoneNumber the client phone number
-     * @param clientAddressId   the client address id
-     * @param firstNameId       the first name id
-     * @param lastNameId        the last name id
-     * @param patronymicId      the patronymic id
-     */
-    public Client(String clientPhoneNumber, Integer clientAddressId, Integer firstNameId, Integer lastNameId, Integer patronymicId) {
-        this.clientPhoneNumber = clientPhoneNumber;
-        this.clientAddressId = clientAddressId;
-        this.firstNameId = firstNameId;
-        this.lastNameId = lastNameId;
-        this.patronymicId = patronymicId;
-    }
-
     @Override
     public String toString() {
         return "Client{" +

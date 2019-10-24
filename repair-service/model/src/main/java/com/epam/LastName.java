@@ -52,21 +52,6 @@ public class LastName {
         this.lastName = lastName;
     }
 
-    /**
-     * Instantiates a new Last name.
-     */
-    public LastName() {
-    }
-
-    /**
-     * Instantiates a new Last name.
-     *
-     * @param lastName the last name
-     */
-    public LastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     @Override
     public String toString() {
         return "LastName{" +

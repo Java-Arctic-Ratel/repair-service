@@ -52,21 +52,6 @@ public class City {
         this.cityName = cityName;
     }
 
-    /**
-     * Instantiates a new City.
-     */
-    public City() {
-    }
-
-    /**
-     * Instantiates a new City.
-     *
-     * @param cityName the city name
-     */
-    public City(String cityName) {
-        this.cityName = cityName;
-    }
-
     @Override
     public String toString() {
         return "City{" +

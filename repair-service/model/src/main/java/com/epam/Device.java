@@ -3,7 +3,7 @@ package com.epam;
 import javax.swing.*;
 
 /**
- *  Class represents entity with device information of repairing service.
+ * Class represents entity with device information of repairing service.
  */
 public class Device {
 
@@ -164,33 +164,6 @@ public class Device {
      * @param brandId the brand id
      */
     public void setBrandId(Integer brandId) {
-        this.brandId = brandId;
-    }
-
-    /**
-     * Instantiates a new Device.
-     */
-    public Device() {
-    }
-
-    /**
-     * Instantiates a new Device.
-     *
-     * @param deviceIMEIOrSn    the device imei or sn
-     * @param devicePassword    the device password
-     * @param clientId          the client id
-     * @param orderId           the order id
-     * @param deviceConditionId the device condition id
-     * @param modelId           the model id
-     * @param brandId           the brand id
-     */
-    public Device(String deviceIMEIOrSn, String devicePassword, Integer clientId, Integer orderId, Integer deviceConditionId, Integer modelId, Integer brandId) {
-        this.deviceIMEIOrSn = deviceIMEIOrSn;
-        this.devicePassword = devicePassword;
-        this.clientId = clientId;
-        this.orderId = orderId;
-        this.deviceConditionId = deviceConditionId;
-        this.modelId = modelId;
         this.brandId = brandId;
     }
 

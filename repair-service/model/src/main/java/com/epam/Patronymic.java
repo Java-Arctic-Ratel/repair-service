@@ -52,21 +52,6 @@ public class Patronymic {
         this.patronymic = patronymic;
     }
 
-    /**
-     * Instantiates a new Patronymic.
-     */
-    public Patronymic() {
-    }
-
-    /**
-     * Instantiates a new Patronymic.
-     *
-     * @param patronymic the patronymic
-     */
-    public Patronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
     @Override
     public String toString() {
         return "Patronymic{" +
