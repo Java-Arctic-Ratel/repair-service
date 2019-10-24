@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * The type Appearance.
+ */
 @Entity
 public class Appearance {
 
@@ -31,7 +34,7 @@ public class Appearance {
     /**
      * Constructor with parameters.
      *
-     * @param appearanceName Appearance name.
+     * @param appearanceName    Appearance name.
      * @param deviceConditionId Device condition id.
      */
     public Appearance(String appearanceName, Integer deviceConditionId) {
@@ -39,26 +42,56 @@ public class Appearance {
         this.deviceConditionId = deviceConditionId;
     }
 
+    /**
+     * Gets appearance id.
+     *
+     * @return the appearance id
+     */
     public Integer getAppearanceId() {
         return appearanceId;
     }
 
+    /**
+     * Sets appearance id.
+     *
+     * @param appearanceId the appearance id
+     */
     public void setAppearanceId(Integer appearanceId) {
         this.appearanceId = appearanceId;
     }
 
+    /**
+     * Gets appearance name.
+     *
+     * @return the appearance name
+     */
     public String getAppearanceName() {
         return appearanceName;
     }
 
+    /**
+     * Sets appearance name.
+     *
+     * @param appearanceName the appearance name
+     */
     public void setAppearanceName(String appearanceName) {
         this.appearanceName = appearanceName;
     }
 
+    /**
+     * Gets device condition id.
+     *
+     * @return the device condition id
+     */
     public Integer getDeviceConditionId() {
         return deviceConditionId;
     }
 
+    /**
+     * Sets device condition id.
+     *
+     * @param deviceConditionId the device condition id
+     */
     public void setDeviceConditionId(Integer deviceConditionId) {
         this.deviceConditionId = deviceConditionId;
     }
