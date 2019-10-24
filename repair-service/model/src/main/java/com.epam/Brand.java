@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * The type Appearance.
+ * The type Brand.
  */
 @Entity
 public class Brand {
