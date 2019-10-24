@@ -9,73 +9,73 @@ import javax.persistence.Id;
  * The type Appearance.
  */
 @Entity
-public class Model {
+public class Brand {
 
     /**
-     * Model id is the primary key.
+     * Brand id is the primary key.
      */
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer modelId;
+    private Integer brandId;
 
-    private  String modelName;
+    private  String brandName;
 
     /**
-     * Device id is the foreign key (Model to device).
+     * Device id is the foreign key (Brand to device).
      */
     private Integer deviceId;
 
     /**
      * Constructor without parameters.
      */
-    public Model() {
+    public Brand() {
     }
 
     /**
      * Constructor with parameters.
      *
-     * @param modelName the model name
+     * @param brandName the brand name
      * @param deviceId  the device id
      */
-    public Model(String modelName, Integer deviceId) {
-        this.modelName = modelName;
+    public Brand(String brandName, Integer deviceId) {
+        this.brandName = brandName;
         this.deviceId = deviceId;
     }
 
     /**
-     * Gets model id.
+     * Gets brand id.
      *
-     * @return the model id
+     * @return the brand id
      */
-    public Integer getModelId() {
-        return modelId;
+    public Integer getBrandId() {
+        return brandId;
     }
 
     /**
-     * Sets model id.
+     * Sets brand id.
      *
-     * @param modelId the model id
+     * @param brandId the brand id
      */
-    public void setModelId(Integer modelId) {
-        this.modelId = modelId;
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
     }
 
     /**
-     * Gets model name.
+     * Gets brand name.
      *
-     * @return the model name
+     * @return the brand name
      */
-    public String getModelName() {
-        return modelName;
+    public String getBrandName() {
+        return brandName;
     }
 
     /**
-     * Sets model name.
+     * Sets brand name.
      *
-     * @param modelName the model name
+     * @param brandName the brand name
      */
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     /**
