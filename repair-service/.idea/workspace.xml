@@ -3,6 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="213e14be-64c7-4856-b5dd-68a5ea3ebdff" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/Appearance.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/Appearance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/Brand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/Complectation.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/Complectation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/Defect.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/Defect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/DeviceCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/DeviceCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/SpareParts.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/SpareParts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com.epam/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com.epam/Status.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
