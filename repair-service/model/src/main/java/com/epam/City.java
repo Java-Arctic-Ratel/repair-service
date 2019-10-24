@@ -27,8 +27,7 @@ public class City {
     public City() {
     }
 
-    public City(Integer cityId, String cityName) {
-        this.cityId = cityId;
+    public City(String cityName) {
         this.cityName = cityName;
     }
 
