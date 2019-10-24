@@ -17,30 +17,11 @@ public class Complectation {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer complectationId;
-
     private  String complectationName;
-
     /**
      * Device condition id is the foreign key (Complectation to device condition).
      */
     private Integer deviceConditionId;
-
-    /**
-     * Constructor without parameters.
-     */
-    public Complectation() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param complectationName Complectation name.
-     * @param deviceConditionId Device condition id.
-     */
-    public Complectation(String complectationName, Integer deviceConditionId) {
-        this.complectationName = complectationName;
-        this.deviceConditionId = deviceConditionId;
-    }
 
     /**
      * Gets complectation name.

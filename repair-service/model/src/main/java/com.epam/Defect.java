@@ -17,30 +17,11 @@ public class Defect {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer defectId;
-
     private  String defectName;
-
     /**
      * Device condition id is the foreign key (Defect to device condition).
      */
     private Integer deviceConditionId;
-
-    /**
-     * Constructor without parameters.
-     */
-    public Defect() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param defectName        the defect name
-     * @param deviceConditionId the device condition id
-     */
-    public Defect(String defectName, Integer deviceConditionId) {
-        this.defectName = defectName;
-        this.deviceConditionId = deviceConditionId;
-    }
 
     /**
      * Gets defect id.

@@ -17,30 +17,11 @@ public class Appearance {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer appearanceId;
-
     private  String appearanceName;
-
     /**
      * Device condition id is the foreign key (Appearance to device condition).
      */
     private Integer deviceConditionId;
-
-    /**
-     * Constructor without parameters.
-     */
-    public Appearance() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param appearanceName    Appearance name.
-     * @param deviceConditionId Device condition id.
-     */
-    public Appearance(String appearanceName, Integer deviceConditionId) {
-        this.appearanceName = appearanceName;
-        this.deviceConditionId = deviceConditionId;
-    }
 
     /**
      * Gets appearance id.
