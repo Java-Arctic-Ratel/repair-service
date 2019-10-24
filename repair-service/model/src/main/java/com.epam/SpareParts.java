@@ -18,33 +18,12 @@ public class SpareParts {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer sparePartsId;
-
     private  String sparePartsName;
     private BigDecimal sparePartsCost;
-
     /**
      * Order id is the foreign key (Spare parts to order).
      */
     private Integer orderId;
-
-    /**
-     * Constructor without parameters.
-     */
-    public SpareParts() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param sparePartsName the spare parts name
-     * @param sparePartsCost the spare parts cost
-     * @param orderId        the order id
-     */
-    public SpareParts(String sparePartsName, BigDecimal sparePartsCost, Integer orderId) {
-        this.sparePartsName = sparePartsName;
-        this.sparePartsCost = sparePartsCost;
-        this.orderId = orderId;
-    }
 
     /**
      * Gets spare parts id.

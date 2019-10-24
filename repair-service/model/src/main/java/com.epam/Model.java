@@ -17,30 +17,11 @@ public class Model {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer modelId;
-
     private  String modelName;
-
     /**
      * Device id is the foreign key (Model to device).
      */
     private Integer deviceId;
-
-    /**
-     * Constructor without parameters.
-     */
-    public Model() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param modelName the model name
-     * @param deviceId  the device id
-     */
-    public Model(String modelName, Integer deviceId) {
-        this.modelName = modelName;
-        this.deviceId = deviceId;
-    }
 
     /**
      * Gets model id.

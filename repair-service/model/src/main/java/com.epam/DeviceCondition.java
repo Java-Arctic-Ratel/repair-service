@@ -39,27 +39,6 @@ public class DeviceCondition {
     private Integer defectId;
 
     /**
-     * Constructor without parameters.
-     */
-    public DeviceCondition() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param deviceId        the device id
-     * @param appearanceId    the appearance id
-     * @param сomplectationId the сomplectation id
-     * @param defectId        the defect id
-     */
-    public DeviceCondition(Integer deviceId, Integer appearanceId, Integer сomplectationId, Integer defectId) {
-        this.deviceId = deviceId;
-        this.appearanceId = appearanceId;
-        this.сomplectationId = сomplectationId;
-        this.defectId = defectId;
-    }
-
-    /**
      * Gets device condition id.
      *
      * @return the device condition id

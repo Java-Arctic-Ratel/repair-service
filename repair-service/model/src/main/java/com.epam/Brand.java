@@ -17,30 +17,11 @@ public class Brand {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer brandId;
-
     private  String brandName;
-
     /**
      * Device id is the foreign key (Brand to device).
      */
     private Integer deviceId;
-
-    /**
-     * Constructor without parameters.
-     */
-    public Brand() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param brandName the brand name
-     * @param deviceId  the device id
-     */
-    public Brand(String brandName, Integer deviceId) {
-        this.brandName = brandName;
-        this.deviceId = deviceId;
-    }
 
     /**
      * Gets brand id.

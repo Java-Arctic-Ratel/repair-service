@@ -17,30 +17,11 @@ public class Status {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer statusId;
-
     private  String statusName;
-
     /**
      * Order id is the foreign key (status to order).
      */
     private Integer orderId;
-
-    /**
-     * Constructor without parameters.
-     */
-    public Status() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param statusName the status name
-     * @param orderId    the order id
-     */
-    public Status(String statusName, Integer orderId) {
-        this.statusName = statusName;
-        this.orderId = orderId;
-    }
 
     /**
      * Gets status id.

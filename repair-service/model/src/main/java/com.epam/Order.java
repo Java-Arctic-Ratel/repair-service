@@ -19,17 +19,14 @@ public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer orderId;
-
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private LocalDate dateIssue;
     private BigDecimal costEstimated;
-
     /**
      * Spare parts id is the foreign key (order to spare parts).
      */
     private Integer sparePartsId;
-
     private BigDecimal costTotal;
 
     /**
@@ -46,40 +43,6 @@ public class Order {
      * Status id is the foreign key (order to status).
      */
     private Integer statusId;
-
-
-    /**
-     * Constructor without parameters.
-     */
-    public Order() {
-    }
-
-    /**
-     * Constructor with parameters.
-     *
-     * @param dateStart     Date of start registration..
-     * @param dateEnd       Date of ent registration.
-     * @param dateIssue     Date of issue.
-     * @param costEstimated Cost estimated.
-     * @param sparePartsId  Spare parts id.
-     * @param costTotal     Cost total.
-     * @param clientId      Client id.
-     * @param executorId    Executor id.
-     * @param statusId      Status id.
-     */
-    public Order(LocalDate dateStart, LocalDate dateEnd, LocalDate dateIssue, BigDecimal costEstimated, Integer sparePartsId,
-                 BigDecimal costTotal, Integer clientId, Integer executorId, Integer statusId) {
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.dateIssue = dateIssue;
-        this.costEstimated = costEstimated;
-        this.sparePartsId = sparePartsId;
-        this.costTotal = costTotal;
-        this.clientId = clientId;
-        this.executorId = executorId;
-        this.statusId = statusId;
-    }
-
 
     /**
      * Gets order id.
