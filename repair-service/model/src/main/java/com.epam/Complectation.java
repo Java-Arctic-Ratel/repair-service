@@ -77,4 +77,13 @@ public class Complectation {
     public void setDeviceConditionId(Integer deviceConditionId) {
         this.deviceConditionId = deviceConditionId;
     }
+
+    @Override
+    public String toString() {
+        return "Complectation{" +
+                "complectationId=" + complectationId +
+                ", complectationName='" + complectationName + '\'' +
+                ", deviceConditionId=" + deviceConditionId +
+                '}';
+    }
 }

@@ -95,4 +95,13 @@ public class Appearance {
     public void setDeviceConditionId(Integer deviceConditionId) {
         this.deviceConditionId = deviceConditionId;
     }
+
+    @Override
+    public String toString() {
+        return "Appearance{" +
+                "appearanceId=" + appearanceId +
+                ", appearanceName='" + appearanceName + '\'' +
+                ", deviceConditionId=" + deviceConditionId +
+                '}';
+    }
 }

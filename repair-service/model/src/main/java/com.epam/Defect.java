@@ -95,4 +95,13 @@ public class Defect {
     public void setDeviceConditionId(Integer deviceConditionId) {
         this.deviceConditionId = deviceConditionId;
     }
+
+    @Override
+    public String toString() {
+        return "Defect{" +
+                "defectId=" + defectId +
+                ", defectName='" + defectName + '\'' +
+                ", deviceConditionId=" + deviceConditionId +
+                '}';
+    }
 }

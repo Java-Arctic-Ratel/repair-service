@@ -95,4 +95,13 @@ public class Status {
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
+
+    @Override
+    public String toString() {
+        return "Status{" +
+                "statusId=" + statusId +
+                ", statusName='" + statusName + '\'' +
+                ", orderId=" + orderId +
+                '}';
+    }
 }
