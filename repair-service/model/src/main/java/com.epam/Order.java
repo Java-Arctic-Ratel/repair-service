@@ -23,14 +23,14 @@ public class Order {
     private BigDecimal costEstimated;
 
     /**
-     * Spare parts id is the foreign key (spare pats to executor).
+     * Spare parts id is the foreign key (order to spare parts).
      */
     private Integer sparePartsId;
 
     private BigDecimal costTotal;
 
     /**
-     * Client id is the foreign key (client to executor).
+     * Client id is the foreign key (order to client).
      */
     private Integer clientId;
 
