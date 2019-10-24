@@ -51,10 +51,6 @@ public class Order {
     public Order() {
     }
 
-    public Integer getOrderId() {
-        return orderId;
-    }
-
     /**
      * Constructor with parameters.
      *
@@ -79,6 +75,11 @@ public class Order {
         this.clientId = clientId;
         this.executorId = executorId;
         this.statusId = statusId;
+    }
+
+
+    public Integer getOrderId() {
+        return orderId;
     }
 
     public void setOrderId(Integer orderId) {
