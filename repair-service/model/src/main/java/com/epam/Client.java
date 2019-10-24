@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * Class represents entity with client information of repairing service.
+ */
 @Entity
 public class Client {
 
