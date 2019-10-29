@@ -1,6 +1,14 @@
 language: java
+install: true
+dist: trusty
+jdk: openjdk11
+before_script:
+  - cd repair-service/
+  - chmod +x gradlew
 
-script: "mvn cobertura:cobertura"
+script:
+  - ./gradlew build --scan -s
+  - ./gradlew jacocoTestReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
