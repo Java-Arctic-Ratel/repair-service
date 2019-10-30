@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.repair.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,22 +17,14 @@ public class DeviceCondition {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer deviceConditionId;
-
-    /**
-     * Device id is the foreign key (device condition to device condition).
-     */
-    private Integer deviceId;
-
     /**
      * Appearance Id id is the foreign key (Appearance id to device condition).
      */
     private Integer appearanceId;
-
     /**
      * Complectation Id id is the foreign key (Complectation id to device condition).
      */
     private Integer сomplectationId;
-
     /**
      * Defect Id id is the foreign key (Defect id to device condition).
      */
@@ -54,24 +46,6 @@ public class DeviceCondition {
      */
     public void setDeviceConditionId(Integer deviceConditionId) {
         this.deviceConditionId = deviceConditionId;
-    }
-
-    /**
-     * Gets device id.
-     *
-     * @return the device id
-     */
-    public Integer getDeviceId() {
-        return deviceId;
-    }
-
-    /**
-     * Sets device id.
-     *
-     * @param deviceId the device id
-     */
-    public void setDeviceId(Integer deviceId) {
-        this.deviceId = deviceId;
     }
 
     /**
@@ -132,7 +106,6 @@ public class DeviceCondition {
     public String toString() {
         return "DeviceCondition{" +
                 "deviceConditionId=" + deviceConditionId +
-                ", deviceId=" + deviceId +
                 ", appearanceId=" + appearanceId +
                 ", сomplectationId=" + сomplectationId +
                 ", defectId=" + defectId +

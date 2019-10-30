@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.repair.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +18,6 @@ public class Model {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer modelId;
     private  String modelName;
-    /**
-     * Device id is the foreign key (Model to device).
-     */
-    private Integer deviceId;
 
     /**
      * Gets model id.
@@ -59,30 +55,11 @@ public class Model {
         this.modelName = modelName;
     }
 
-    /**
-     * Gets device id.
-     *
-     * @return the device id
-     */
-    public Integer getDeviceId() {
-        return deviceId;
-    }
-
-    /**
-     * Sets device id.
-     *
-     * @param deviceId the device id
-     */
-    public void setDeviceId(Integer deviceId) {
-        this.deviceId = deviceId;
-    }
-
     @Override
     public String toString() {
         return "Model{" +
                 "modelId=" + modelId +
                 ", modelName='" + modelName + '\'' +
-                ", deviceId=" + deviceId +
                 '}';
     }
 }

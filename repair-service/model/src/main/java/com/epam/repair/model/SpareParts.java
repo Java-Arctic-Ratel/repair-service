@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.repair.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,10 +20,6 @@ public class SpareParts {
     private Integer sparePartsId;
     private  String sparePartsName;
     private BigDecimal sparePartsCost;
-    /**
-     * Order id is the foreign key (Spare parts to order).
-     */
-    private Integer orderId;
 
     /**
      * Gets spare parts id.
@@ -79,31 +75,12 @@ public class SpareParts {
         this.sparePartsCost = sparePartsCost;
     }
 
-    /**
-     * Gets order id.
-     *
-     * @return the order id
-     */
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    /**
-     * Sets order id.
-     *
-     * @param orderId the order id
-     */
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
     @Override
     public String toString() {
         return "SpareParts{" +
                 "sparePartsId=" + sparePartsId +
                 ", sparePartsName='" + sparePartsName + '\'' +
                 ", sparePartsCost=" + sparePartsCost +
-                ", orderId=" + orderId +
                 '}';
     }
 }

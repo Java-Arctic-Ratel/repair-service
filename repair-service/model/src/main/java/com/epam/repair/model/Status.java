@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.repair.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +18,6 @@ public class Status {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer statusId;
     private  String statusName;
-    /**
-     * Order id is the foreign key (status to order).
-     */
-    private Integer orderId;
 
     /**
      * Gets status id.
@@ -59,30 +55,11 @@ public class Status {
         this.statusName = statusName;
     }
 
-    /**
-     * Gets order id.
-     *
-     * @return the order id
-     */
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    /**
-     * Sets order id.
-     *
-     * @param orderId the order id
-     */
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
     @Override
     public String toString() {
         return "Status{" +
                 "statusId=" + statusId +
                 ", statusName='" + statusName + '\'' +
-                ", orderId=" + orderId +
                 '}';
     }
 }
