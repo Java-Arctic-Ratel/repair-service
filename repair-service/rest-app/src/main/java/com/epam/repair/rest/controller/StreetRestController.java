@@ -1,8 +1,7 @@
-package com.epam.repair.rest_app.controller;
-
+package com.epam.repair.rest.controller;
 
 import com.epam.repair.model.Street;
-import com.epam.repair.rest_app.StreetService;
+import com.epam.repair.service.StreetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

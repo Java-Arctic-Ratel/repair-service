@@ -1,4 +1,4 @@
-package com.epam.repair.rest_app;
+package com.epam.repair.service;
 
 import com.epam.repair.model.City;
 import java.util.List;

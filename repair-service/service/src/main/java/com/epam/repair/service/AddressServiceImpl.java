@@ -1,4 +1,4 @@
-package com.epam.repair.rest_app;
+package com.epam.repair.service;
 
 import com.epam.repair.dao.AddressDao;
 import com.epam.repair.model.Address;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class AddressServiceImpl implements AddressService{
+public class AddressServiceImpl implements AddressService {
 
     private final AddressDao addressDao;
 

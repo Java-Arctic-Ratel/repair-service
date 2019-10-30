@@ -1,4 +1,4 @@
-package com.epam.repair.rest_app;
+package com.epam.repair.service;
 
 import com.epam.repair.dao.StreetDao;
 import com.epam.repair.model.Street;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class StreetServiceImpl implements StreetService{
+public class StreetServiceImpl implements StreetService {
 
     private final StreetDao streetDao;
 

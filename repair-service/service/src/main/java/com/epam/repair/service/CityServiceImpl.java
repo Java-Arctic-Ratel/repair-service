@@ -1,4 +1,4 @@
-package com.epam.repair.rest_app;
+package com.epam.repair.service;
 
 import com.epam.repair.dao.CityDao;
 import com.epam.repair.model.City;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class CityServiceImpl implements CityService{
+public class CityServiceImpl implements CityService {
 
     private final CityDao cityDao;
 

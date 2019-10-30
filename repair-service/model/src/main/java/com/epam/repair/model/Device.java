@@ -1,5 +1,6 @@
 package com.epam.repair.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -7,6 +8,7 @@ import javax.persistence.Id;
 /**
  * Class represents entity with device information of repairing service.
  */
+@Entity
 public class Device {
 
     /**
