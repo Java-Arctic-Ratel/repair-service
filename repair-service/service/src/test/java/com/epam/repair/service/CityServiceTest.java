@@ -1,7 +1,8 @@
-package com.epam.repair.rest_app;
+package com.epam.repair.service;
 
 import com.epam.repair.dao.CityDao;
 import com.epam.repair.model.City;
+import com.epam.repair.service.CityServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
-public class CityServiceMockTest {
+public class CityServiceTest {
 
     private static final Integer CITY_ID_1 = 1;
     private static final Integer CITY_ID_2 = 2;
@@ -35,13 +36,11 @@ public class CityServiceMockTest {
 
         assertNotNull(cities);
         assertTrue(cities.size() > 0);
-        assertTrue(cities.size() == 2);
 
         Mockito.verify(cityDao).findAll();
     }
 
     private City createCityForTest(int cityId) {
-
         City city = new City();
         city.setCityId(cityId);
         city.setCityName(CITY_NAME + cityId);

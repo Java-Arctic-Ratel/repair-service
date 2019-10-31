@@ -1,7 +1,8 @@
-package com.epam.repair.rest_app;
+package com.epam.repair.service;
 
 import com.epam.repair.dao.StreetDao;
 import com.epam.repair.model.Street;
+import com.epam.repair.service.StreetServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
-public class StreetServiceMockTest {
+public class StreetServiceTest {
 
     private static final Integer STREET_ID_1 = 1;
     private static final Integer STREET_ID_2 = 2;
@@ -35,7 +36,6 @@ public class StreetServiceMockTest {
 
         assertNotNull(streets);
         assertTrue(streets.size() > 0);
-        assertTrue(streets.size() == 2);
 
         Mockito.verify(streetDao).findAll();
     }

@@ -1,6 +1,6 @@
-package com.epam.repair.rest_app;
+package com.epam.repair.rest;
 
-import com.epam.repair.rest_app.controller.StreetRestController;
+import com.epam.repair.rest.controller.StreetRestController;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

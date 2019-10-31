@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableAutoConfiguration
 @EntityScan(basePackages = "com.epam.repair.model")
 @ComponentScan(basePackages = "com.epam.repair.dao")
-public class Config {
+public class TestConfig {
 }

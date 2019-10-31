@@ -1,7 +1,8 @@
-package com.epam.repair.rest_app;
+package com.epam.repair.service;
 
 import com.epam.repair.dao.AddressDao;
 import com.epam.repair.model.Address;
+import com.epam.repair.service.AddressServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
-public class AddressServiceMockTest {
+public class AddressServiceTest {
 
     private static final Integer ADDRESS_ID_1 = 1;
     private static final Integer ADDRESS_ID_2 = 2;
@@ -34,13 +35,11 @@ public class AddressServiceMockTest {
 
         assertNotNull(addresses);
         assertTrue(addresses.size() > 0);
-        assertTrue(addresses.size() == 2);
 
         Mockito.verify(addressDao).findAll();
     }
 
     private Address createAddressForTest(int addressId) {
-
         Address address = new Address();
         address.setAddressId(addressId);
         address.setHouseNumber("" + addressId);

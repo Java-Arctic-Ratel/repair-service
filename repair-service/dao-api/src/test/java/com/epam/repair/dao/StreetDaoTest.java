@@ -15,11 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = Config.class)
+@ContextConfiguration(classes = TestConfig.class)
 @DataJpaTest
-@TestPropertySource("/application-test.properties")
+@TestPropertySource("classpath:application-test.properties")
 class StreetDaoTest {
-
 
     @Autowired
     private StreetDao streetDao;
@@ -30,6 +29,5 @@ class StreetDaoTest {
 
         assertNotNull(streets);
         assertTrue(streets.size() > 0);
-        assertTrue(streets.size() == 2);
     }
 }
