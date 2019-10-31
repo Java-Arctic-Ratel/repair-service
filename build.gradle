@@ -6,8 +6,6 @@ buildscript {
         junitVersion 		= '4.12'
         restAssuredVersion 	= '2.9.0'
         fasterxmlJacksonVersion = '2.10.0'
-        postgreSqlVersion = '42.2.8'
-        mysqlConnectorJavaVersion = '8.0.18'
     }
 
     repositories {
@@ -23,7 +21,6 @@ buildscript {
 allprojects {
     group projectGroupName
     version projectVersion
-
 }
 
 subprojects {
@@ -56,8 +53,6 @@ subprojects {
         compile "org.springframework.boot:spring-boot-starter-web-services"
         compile "com.h2database:h2"
         compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${fasterxmlJacksonVersion}"
-        compile "org.postgresql:postgresql:${postgreSqlVersion}"
-        compile "mysql:mysql-connector-java:${mysqlConnectorJavaVersion}"
         testCompile "org.springframework.boot:spring-boot-starter-test"
         testCompile "junit:junit:${junitVersion}"
 
