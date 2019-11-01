@@ -1,3 +1,5 @@
 dependencies {
     compile project(':model')
+    compile "org.postgresql:postgresql:${postgreSqlVersion}"
+    compile "mysql:mysql-connector-java:${mysqlConnectorJavaVersion}"
 }

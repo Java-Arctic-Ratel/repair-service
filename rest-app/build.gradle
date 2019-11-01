@@ -1,6 +1,4 @@
 dependencies {
   compile project(':service')
   compile 'org.springframework.boot:spring-boot-starter-actuator'
-  compile "org.postgresql:postgresql:${postgreSqlVersion}"
-  compile "mysql:mysql-connector-java:${mysqlConnectorJavaVersion}"
 }
