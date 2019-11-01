@@ -1,23 +1,34 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * The type Status.
  */
 @Entity
+@Table(name = "status")
 public class Status {
 
     /**
      * Status id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="status_generator")
+    @SequenceGenerator(name="status_generator",
+            sequenceName="status_generator", allocationSize=1000)
+    @Column(name="status_id", updatable=false, nullable=false)
     private Integer statusId;
+
+    @Column(name="status_name", length = 40, nullable=false)
     private  String statusName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="status")
+    private List<Orders> orders;
 
     /**
      * Gets status id.
@@ -53,6 +64,24 @@ public class Status {
      */
     public void setStatusName(String statusName) {
         this.statusName = statusName;
+    }
+
+    /**
+     * Gets orders.
+     *
+     * @return the orders
+     */
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    /**
+     * Sets orders.
+     *
+     * @param orders the orders
+     */
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 
     @Override

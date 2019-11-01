@@ -1,66 +1,111 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * The type Order.
+ * The type Orders.
  */
 @Entity
+@Table(name = "orders")
 public class Orders {
 
     /**
      * Orders id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="orders_generator")
+    @SequenceGenerator(name="orders_generator",
+            sequenceName="orders_generator", allocationSize=1000)
+    @Column(name="orders_id", updatable=false, nullable=false)
     private Integer ordersId;
-    private LocalDate ordersStatDate;
+
+    @Column(name="orders_start_date", nullable=false)
+    private LocalDate ordersStartDate;
+
+    @Column(name="orders_end_date", nullable=false)
     private LocalDate ordersEndDate;
+
+    @Column(name="orders_issue_date", nullable=false)
     private LocalDate ordersIssueDate;
+
+    @Column(name="orders_cost_estimated", nullable=false)
     private BigDecimal ordersCostEstimated;
-    /**
-     * Spare parts id is the foreign key (Spare parts to orders).
-     */
-    private Integer sparePartsId;
+
+    @Column(name="orders_cost_total", nullable=false)
     private BigDecimal ordersCostTotal;
+
     /**
      * Client id is the foreign key (Client to orders).
      */
-    private Integer clientId;
+    @ManyToOne
+    @JoinColumn (name="client_id")
+    private Client client;
+
     /**
      * Device id is the foreign key (Device to orders).
      */
-    private Integer deviceId;
+    @ManyToOne
+    @JoinColumn (name="device_id")
+    private Device device;
+
     /**
      * Executor id is the foreign key (Executor to orders).
      */
-    private Integer executorId;
+    @ManyToOne
+    @JoinColumn (name="executor_id")
+    private Executor executor;
+
+    /**
+     * Spare parts id is the foreign key (Spare parts to orders).
+     */
+    @ManyToOne
+    @JoinColumn (name="spareParts_id")
+    private SpareParts spareParts;
+
     /**
      * Status id is the foreign key (Status to orders).
      */
-    private Integer statusId;
+    @ManyToOne
+    @JoinColumn (name="status_id")
+    private Status status;
 
     /**
-     * Gets orders stat date.
+     * Gets orders id.
      *
-     * @return the orders stat date
+     * @return the orders id
      */
-    public LocalDate getOrdersStatDate() {
-        return ordersStatDate;
+    public Integer getOrdersId() {
+        return ordersId;
     }
 
     /**
-     * Sets orders stat date.
+     * Sets orders id.
      *
-     * @param ordersStatDate the orders stat date
+     * @param ordersId the orders id
      */
-    public void setOrdersStatDate(LocalDate ordersStatDate) {
-        this.ordersStatDate = ordersStatDate;
+    public void setOrdersId(Integer ordersId) {
+        this.ordersId = ordersId;
+    }
+
+    /**
+     * Gets orders start date.
+     *
+     * @return the orders start date
+     */
+    public LocalDate getOrdersStartDate() {
+        return ordersStartDate;
+    }
+
+    /**
+     * Sets orders start date.
+     *
+     * @param ordersStartDate the orders start date
+     */
+    public void setOrdersStartDate(LocalDate ordersStartDate) {
+        this.ordersStartDate = ordersStartDate;
     }
 
     /**
@@ -118,24 +163,6 @@ public class Orders {
     }
 
     /**
-     * Gets spare parts id.
-     *
-     * @return the spare parts id
-     */
-    public Integer getSparePartsId() {
-        return sparePartsId;
-    }
-
-    /**
-     * Sets spare parts id.
-     *
-     * @param sparePartsId the spare parts id
-     */
-    public void setSparePartsId(Integer sparePartsId) {
-        this.sparePartsId = sparePartsId;
-    }
-
-    /**
      * Gets orders cost total.
      *
      * @return the orders cost total
@@ -154,91 +181,109 @@ public class Orders {
     }
 
     /**
-     * Gets client id.
+     * Gets client.
      *
-     * @return the client id
+     * @return the client
      */
-    public Integer getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
     /**
-     * Sets client id.
+     * Sets client.
      *
-     * @param clientId the client id
+     * @param client the client
      */
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     /**
-     * Gets device id.
+     * Gets device.
      *
-     * @return the device id
+     * @return the device
      */
-    public Integer getDeviceId() {
-        return deviceId;
+    public Device getDevice() {
+        return device;
     }
 
     /**
-     * Sets device id.
+     * Sets device.
      *
-     * @param deviceId the device id
+     * @param device the device
      */
-    public void setDeviceId(Integer deviceId) {
-        this.deviceId = deviceId;
+    public void setDevice(Device device) {
+        this.device = device;
     }
 
     /**
-     * Gets executor id.
+     * Gets executor.
      *
-     * @return the executor id
+     * @return the executor
      */
-    public Integer getExecutorId() {
-        return executorId;
+    public Executor getExecutor() {
+        return executor;
     }
 
     /**
-     * Sets executor id.
+     * Sets executor.
      *
-     * @param executorId the executor id
+     * @param executor the executor
      */
-    public void setExecutorId(Integer executorId) {
-        this.executorId = executorId;
+    public void setExecutor(Executor executor) {
+        this.executor = executor;
     }
 
     /**
-     * Gets status id.
+     * Gets spare parts.
      *
-     * @return the status id
+     * @return the spare parts
      */
-    public Integer getStatusId() {
-        return statusId;
+    public SpareParts getSpareParts() {
+        return spareParts;
     }
 
     /**
-     * Sets status id.
+     * Sets spare parts.
      *
-     * @param statusId the status id
+     * @param spareParts the spare parts
      */
-    public void setStatusId(Integer statusId) {
-        this.statusId = statusId;
+    public void setSpareParts(SpareParts spareParts) {
+        this.spareParts = spareParts;
+    }
+
+    /**
+     * Gets status.
+     *
+     * @return the status
+     */
+    public Status getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets status.
+     *
+     * @param status the status
+     */
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         return "Orders{" +
                 "ordersId=" + ordersId +
-                ", ordersStatDate=" + ordersStatDate +
+                ", ordersStartDate=" + ordersStartDate +
                 ", ordersEndDate=" + ordersEndDate +
                 ", ordersIssueDate=" + ordersIssueDate +
                 ", ordersCostEstimated=" + ordersCostEstimated +
-                ", sparePartsId=" + sparePartsId +
                 ", ordersCostTotal=" + ordersCostTotal +
-                ", clientId=" + clientId +
-                ", deviceId=" + deviceId +
-                ", executorId=" + executorId +
-                ", statusId=" + statusId +
+                ", client=" + client +
+                ", device=" + device +
+                ", executor=" + executor +
+                ", spareParts=" + spareParts +
+                ", status=" + status +
                 '}';
     }
 }

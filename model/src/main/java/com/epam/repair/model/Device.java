@@ -1,40 +1,65 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Class represents entity with device information of repairing service.
  */
 @Entity
+@Table(name = "device")
 public class Device {
 
     /**
      * Device id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="device_generator")
+    @SequenceGenerator(name="device_generator",
+            sequenceName="device_generator", allocationSize=1000)
+    @Column(name="device_id", updatable=false, nullable=false)
     private Integer deviceId;
+
+    @Column(name="device_imei_or_sn", length = 40, nullable=false)
     private String deviceIMEIOrSn;
+
+    @Column(name="device_password", length = 40, nullable=false)
     private String devicePassword;
+
     /**
      * Client id is the foreign key (Client to device).
      */
-    private Integer clientId;
+    @ManyToOne
+    @JoinColumn (name="client_id")
+    private Client client;
+
     /**
      * Device condition id is the foreign key (Device condition to device).
      */
-    private Integer deviceConditionId;
+    @ManyToOne
+    @JoinColumn (name="device_condition_id")
+    private DeviceCondition deviceCondition;
+
     /**
      * Model id is the foreign key (Model to device).
      */
-    private Integer modelId;
+    @ManyToOne
+    @JoinColumn (name="model_id")
+    private Model model;
+
     /**
      * Brand id is the foreign key (Brand to device).
      */
-    private Integer brandId;
+    @ManyToOne
+    @JoinColumn (name="brand_id")
+    private Brand brand;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="device")
+    private List<Orders> orders;
 
     /**
      * Gets device id.
@@ -91,75 +116,93 @@ public class Device {
     }
 
     /**
-     * Gets client id.
+     * Gets client.
      *
-     * @return the client id
+     * @return the client
      */
-    public Integer getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
     /**
-     * Sets client id.
+     * Sets client.
      *
-     * @param clientId the client id
+     * @param client the client
      */
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     /**
-     * Gets device condition id.
+     * Gets device condition.
      *
-     * @return the device condition id
+     * @return the device condition
      */
-    public Integer getDeviceConditionId() {
-        return deviceConditionId;
+    public DeviceCondition getDeviceCondition() {
+        return deviceCondition;
     }
 
     /**
-     * Sets device condition id.
+     * Sets device condition.
      *
-     * @param deviceConditionId the device condition id
+     * @param deviceCondition the device condition
      */
-    public void setDeviceConditionId(Integer deviceConditionId) {
-        this.deviceConditionId = deviceConditionId;
+    public void setDeviceCondition(DeviceCondition deviceCondition) {
+        this.deviceCondition = deviceCondition;
     }
 
     /**
-     * Gets model id.
+     * Gets model.
      *
-     * @return the model id
+     * @return the model
      */
-    public Integer getModelId() {
-        return modelId;
+    public Model getModel() {
+        return model;
     }
 
     /**
-     * Sets model id.
+     * Sets model.
      *
-     * @param modelId the model id
+     * @param model the model
      */
-    public void setModelId(Integer modelId) {
-        this.modelId = modelId;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     /**
-     * Gets brand id.
+     * Gets brand.
      *
-     * @return the brand id
+     * @return the brand
      */
-    public Integer getBrandId() {
-        return brandId;
+    public Brand getBrand() {
+        return brand;
     }
 
     /**
-     * Sets brand id.
+     * Sets brand.
      *
-     * @param brandId the brand id
+     * @param brand the brand
      */
-    public void setBrandId(Integer brandId) {
-        this.brandId = brandId;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    /**
+     * Gets orders.
+     *
+     * @return the orders
+     */
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    /**
+     * Sets orders.
+     *
+     * @param orders the orders
+     */
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 
     @Override
@@ -168,10 +211,10 @@ public class Device {
                 "deviceId=" + deviceId +
                 ", deviceIMEIOrSn='" + deviceIMEIOrSn + '\'' +
                 ", devicePassword='" + devicePassword + '\'' +
-                ", clientId=" + clientId +
-                ", deviceConditionId=" + deviceConditionId +
-                ", modelId=" + modelId +
-                ", brandId=" + brandId +
+                ", client=" + client +
+                ", deviceCondition=" + deviceCondition +
+                ", model=" + model +
+                ", brand=" + brand +
                 '}';
     }
 }

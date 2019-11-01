@@ -27,7 +27,7 @@ public class Street {
     private String streetName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="street", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="street")
     private List<Address> address;
 
 
@@ -90,7 +90,6 @@ public class Street {
         return "Street{" +
                 "streetId=" + streetId +
                 ", streetName='" + streetName + '\'' +
-                ", address=" + address +
                 '}';
     }
 }

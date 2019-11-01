@@ -1,33 +1,52 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * The type Executor.
  */
 @Entity
+@Table(name = "executor")
 public class Executor {
 
     /**
      * Device condition id is the primary key.
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="executor_generator")
+    @SequenceGenerator(name="executor_generator",
+            sequenceName="executor_generator", allocationSize=1000)
+    @Column(name="executor_id", updatable=false, nullable=false)
     private Integer executorId;
+
     /**
-     * First name id is the foreign key (First name to client).
+     * First name id is the foreign key (First name to executor).
      */
-    private Integer firstNameId;
+    @ManyToOne
+    @JoinColumn(name="first_name_id")
+    private FirstName firstName;
+
     /**
-     * Last name id is the foreign key (Last name to client).
+     * Last name id is the foreign key (Last name to executor).
      */
-    private Integer lastNameId;
+    @ManyToOne
+    @JoinColumn (name="last_name_id")
+    private LastName lastName;
+
     /**
-     * Patronymic id is the foreign key (Patronymic to client).
+     * Patronymic id is the foreign key (Patronymic to executor).
      */
-    private Integer patronymicId;
+    @ManyToOne
+    @JoinColumn (name="patronymic_id")
+    private Patronymic patronymic;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="executor")
+    private List<Orders> orders;
 
     /**
      * Gets executor id.
@@ -48,66 +67,84 @@ public class Executor {
     }
 
     /**
-     * Gets first name id.
+     * Gets first name.
      *
-     * @return the first name id
+     * @return the first name
      */
-    public Integer getFirstNameId() {
-        return firstNameId;
+    public FirstName getFirstName() {
+        return firstName;
     }
 
     /**
-     * Sets first name id.
+     * Sets first name.
      *
-     * @param firstNameId the first name id
+     * @param firstName the first name
      */
-    public void setFirstNameId(Integer firstNameId) {
-        this.firstNameId = firstNameId;
+    public void setFirstName(FirstName firstName) {
+        this.firstName = firstName;
     }
 
     /**
-     * Gets last name id.
+     * Gets last name.
      *
-     * @return the last name id
+     * @return the last name
      */
-    public Integer getLastNameId() {
-        return lastNameId;
+    public LastName getLastName() {
+        return lastName;
     }
 
     /**
-     * Sets last name id.
+     * Sets last name.
      *
-     * @param lastNameId the last name id
+     * @param lastName the last name
      */
-    public void setLastNameId(Integer lastNameId) {
-        this.lastNameId = lastNameId;
+    public void setLastName(LastName lastName) {
+        this.lastName = lastName;
     }
 
     /**
-     * Gets patronymic id.
+     * Gets patronymic.
      *
-     * @return the patronymic id
+     * @return the patronymic
      */
-    public Integer getPatronymicId() {
-        return patronymicId;
+    public Patronymic getPatronymic() {
+        return patronymic;
     }
 
     /**
-     * Sets patronymic id.
+     * Sets patronymic.
      *
-     * @param patronymicId the patronymic id
+     * @param patronymic the patronymic
      */
-    public void setPatronymicId(Integer patronymicId) {
-        this.patronymicId = patronymicId;
+    public void setPatronymic(Patronymic patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    /**
+     * Gets orders.
+     *
+     * @return the orders
+     */
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    /**
+     * Sets orders.
+     *
+     * @param orders the orders
+     */
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 
     @Override
     public String toString() {
         return "Executor{" +
                 "executorId=" + executorId +
-                ", firstNameId=" + firstNameId +
-                ", lastNameId=" + lastNameId +
-                ", patronymicId=" + patronymicId +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName +
+                ", patronymic=" + patronymic +
                 '}';
     }
 }

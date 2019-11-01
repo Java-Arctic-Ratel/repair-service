@@ -1,23 +1,34 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * The type Defect.
  */
 @Entity
+@Table(name = "defect")
 public class Defect {
 
     /**
      * Defect id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="defect_generator")
+    @SequenceGenerator(name="defect_generator",
+            sequenceName="defect_generator", allocationSize=1000)
+    @Column(name="defect_id", updatable=false, nullable=false)
     private Integer defectId;
+
+    @Column(name="defect_name", length = 40, nullable=false)
     private  String defectName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="defect")
+    private List<DeviceCondition> deviceConditions;
 
     /**
      * Gets defect id.
@@ -53,6 +64,24 @@ public class Defect {
      */
     public void setDefectName(String defectName) {
         this.defectName = defectName;
+    }
+
+    /**
+     * Gets device conditions.
+     *
+     * @return the device conditions
+     */
+    public List<DeviceCondition> getDeviceConditions() {
+        return deviceConditions;
+    }
+
+    /**
+     * Sets device conditions.
+     *
+     * @param deviceConditions the device conditions
+     */
+    public void setDeviceConditions(List<DeviceCondition> deviceConditions) {
+        this.deviceConditions = deviceConditions;
     }
 
     @Override

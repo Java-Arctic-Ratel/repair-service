@@ -1,25 +1,38 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * The type SpareParts.
  */
 @Entity
+@Table(name = "spare_parts")
 public class SpareParts {
 
     /**
      * Spare parts id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="spare_parts_generator")
+    @SequenceGenerator(name="spare_parts_generator",
+            sequenceName="spare_parts_generator", allocationSize=1000)
+    @Column(name="spare_parts_id", updatable=false, nullable=false)
     private Integer sparePartsId;
+
+    @Column(name="spare_parts_name", length = 40, nullable=false)
     private  String sparePartsName;
+
+    @Column(name="spare_parts_cost", nullable=false)
     private BigDecimal sparePartsCost;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="spareParts")
+    private List<Orders> orders;
 
     /**
      * Gets spare parts id.
@@ -73,6 +86,24 @@ public class SpareParts {
      */
     public void setSparePartsCost(BigDecimal sparePartsCost) {
         this.sparePartsCost = sparePartsCost;
+    }
+
+    /**
+     * Gets orders.
+     *
+     * @return the orders
+     */
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    /**
+     * Sets orders.
+     *
+     * @param orders the orders
+     */
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 
     @Override

@@ -1,38 +1,83 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Class represents entity with client information of repairing service.
  */
 @Entity
+@Table(name = "client")
 public class Client {
 
     /**
-     * City id is the primary key.
+     * Client id is the primary key.
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="client_generator")
+    @SequenceGenerator(name="client_generator",
+            sequenceName="client_generator", allocationSize=1000)
+    @Column(name="client_id", updatable=false, nullable=false)
     private Integer clientId;
+
+    @Column(name="client_phone_number", length = 40, nullable=false)
     private String clientPhoneNumber;
+
     /**
      * First name id is the foreign key (First name to client).
      */
-    private Integer firstNameId;
+    @ManyToOne
+    @JoinColumn (name="first_name_id")
+    private FirstName firstName;
+
     /**
      * Last name id is the foreign key (Last name to client).
      */
-    private Integer lastNameId;
+    @ManyToOne
+    @JoinColumn (name="last_name_id")
+    private LastName lastName;
+
     /**
      * Patronymic id is the foreign key (Patronymic to client).
      */
-    private Integer patronymicId;
+    @ManyToOne
+    @JoinColumn (name="patronymic_id")
+    private Patronymic patronymic;
+
     /**
-     * Address id is the foreign key (Address name to client).
+     * Address id is the foreign key (Address to client).
      */
-    private Integer AddressId;
+    @ManyToOne
+    @JoinColumn (name="address_id")
+    private Address address;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="client")
+    private List<Device> devices;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="client")
+    private List<Orders> orders;
+
+    /**
+     * Gets client id.
+     *
+     * @return the client id
+     */
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    /**
+     * Sets client id.
+     *
+     * @param clientId the client id
+     */
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
 
     /**
      * Gets client phone number.
@@ -53,75 +98,111 @@ public class Client {
     }
 
     /**
-     * Gets first name id.
+     * Gets first name.
      *
-     * @return the first name id
+     * @return the first name
      */
-    public Integer getFirstNameId() {
-        return firstNameId;
+    public FirstName getFirstName() {
+        return firstName;
     }
 
     /**
-     * Sets first name id.
+     * Sets first name.
      *
-     * @param firstNameId the first name id
+     * @param firstName the first name
      */
-    public void setFirstNameId(Integer firstNameId) {
-        this.firstNameId = firstNameId;
+    public void setFirstName(FirstName firstName) {
+        this.firstName = firstName;
     }
 
     /**
-     * Gets last name id.
+     * Gets last name.
      *
-     * @return the last name id
+     * @return the last name
      */
-    public Integer getLastNameId() {
-        return lastNameId;
+    public LastName getLastName() {
+        return lastName;
     }
 
     /**
-     * Sets last name id.
+     * Sets last name.
      *
-     * @param lastNameId the last name id
+     * @param lastName the last name
      */
-    public void setLastNameId(Integer lastNameId) {
-        this.lastNameId = lastNameId;
+    public void setLastName(LastName lastName) {
+        this.lastName = lastName;
     }
 
     /**
-     * Gets patronymic id.
+     * Gets patronymic.
      *
-     * @return the patronymic id
+     * @return the patronymic
      */
-    public Integer getPatronymicId() {
-        return patronymicId;
+    public Patronymic getPatronymic() {
+        return patronymic;
     }
 
     /**
-     * Sets patronymic id.
+     * Sets patronymic.
      *
-     * @param patronymicId the patronymic id
+     * @param patronymic the patronymic
      */
-    public void setPatronymicId(Integer patronymicId) {
-        this.patronymicId = patronymicId;
+    public void setPatronymic(Patronymic patronymic) {
+        this.patronymic = patronymic;
     }
 
     /**
-     * Gets address id.
+     * Gets address.
      *
-     * @return the address id
+     * @return the address
      */
-    public Integer getAddressId() {
-        return AddressId;
+    public Address getAddress() {
+        return address;
     }
 
     /**
-     * Sets address id.
+     * Sets address.
      *
-     * @param addressId the address id
+     * @param address the address
      */
-    public void setAddressId(Integer addressId) {
-        AddressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    /**
+     * Gets devices.
+     *
+     * @return the devices
+     */
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    /**
+     * Sets devices.
+     *
+     * @param devices the devices
+     */
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
+    }
+
+    /**
+     * Gets orders.
+     *
+     * @return the orders
+     */
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    /**
+     * Sets orders.
+     *
+     * @param orders the orders
+     */
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 
     @Override
@@ -129,10 +210,10 @@ public class Client {
         return "Client{" +
                 "clientId=" + clientId +
                 ", clientPhoneNumber='" + clientPhoneNumber + '\'' +
-                ", firstNameId=" + firstNameId +
-                ", lastNameId=" + lastNameId +
-                ", patronymicId=" + patronymicId +
-                ", AddressId=" + AddressId +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName +
+                ", patronymic=" + patronymic +
+                ", address=" + address +
                 '}';
     }
 }

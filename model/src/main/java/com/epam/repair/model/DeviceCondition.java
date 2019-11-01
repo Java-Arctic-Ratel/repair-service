@@ -1,34 +1,52 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * The type DeviceCondition.
  */
 @Entity
+@Table(name = "device_condition")
 public class DeviceCondition {
 
     /**
      * Device condition id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="device_condition_generator")
+    @SequenceGenerator(name="device_condition_generator",
+            sequenceName="device_condition_generator", allocationSize=1000)
+    @Column(name="device_condition_id", updatable=false, nullable=false)
     private Integer deviceConditionId;
+
     /**
-     * Appearance Id id is the foreign key (Appearance id to device condition).
+     * Appearance id is the foreign key (Appearance to device condition).
      */
-    private Integer appearanceId;
+    @ManyToOne
+    @JoinColumn (name="appearance_id")
+    private Appearance appearance;
+
     /**
-     * Complectation Id id is the foreign key (Complectation id to device condition).
+     * Complectation id is the foreign key (Complectation to device condition).
      */
-    private Integer сomplectationId;
+    @ManyToOne
+    @JoinColumn (name="complectation_id")
+    private Complectation complectation;
+
     /**
-     * Defect Id id is the foreign key (Defect id to device condition).
+     * Defect id is the foreign key (Defect to device condition).
      */
-    private Integer defectId;
+    @ManyToOne
+    @JoinColumn (name="defect_id")
+    private Defect defect;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="deviceCondition")
+    private List<Device> devices;
 
     /**
      * Gets device condition id.
@@ -49,66 +67,84 @@ public class DeviceCondition {
     }
 
     /**
-     * Gets appearance id.
+     * Gets appearance.
      *
-     * @return the appearance id
+     * @return the appearance
      */
-    public Integer getAppearanceId() {
-        return appearanceId;
+    public Appearance getAppearance() {
+        return appearance;
     }
 
     /**
-     * Sets appearance id.
+     * Sets appearance.
      *
-     * @param appearanceId the appearance id
+     * @param appearance the appearance
      */
-    public void setAppearanceId(Integer appearanceId) {
-        this.appearanceId = appearanceId;
+    public void setAppearance(Appearance appearance) {
+        this.appearance = appearance;
     }
 
     /**
-     * Get сomplectation id integer.
+     * Gets complectation.
      *
-     * @return the integer
+     * @return the complectation
      */
-    public Integer getСomplectationId() {
-        return сomplectationId;
+    public Complectation getComplectation() {
+        return complectation;
     }
 
     /**
-     * Set сomplectation id.
+     * Sets complectation.
      *
-     * @param сomplectationId the сomplectation id
+     * @param complectation the complectation
      */
-    public void setСomplectationId(Integer сomplectationId) {
-        this.сomplectationId = сomplectationId;
+    public void setComplectation(Complectation complectation) {
+        this.complectation = complectation;
     }
 
     /**
-     * Gets defect id.
+     * Gets defect.
      *
-     * @return the defect id
+     * @return the defect
      */
-    public Integer getDefectId() {
-        return defectId;
+    public Defect getDefect() {
+        return defect;
     }
 
     /**
-     * Sets defect id.
+     * Sets defect.
      *
-     * @param defectId the defect id
+     * @param defect the defect
      */
-    public void setDefectId(Integer defectId) {
-        this.defectId = defectId;
+    public void setDefect(Defect defect) {
+        this.defect = defect;
+    }
+
+    /**
+     * Gets devices.
+     *
+     * @return the devices
+     */
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    /**
+     * Sets devices.
+     *
+     * @param devices the devices
+     */
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 
     @Override
     public String toString() {
         return "DeviceCondition{" +
                 "deviceConditionId=" + deviceConditionId +
-                ", appearanceId=" + appearanceId +
-                ", сomplectationId=" + сomplectationId +
-                ", defectId=" + defectId +
+                ", appearance=" + appearance +
+                ", complectation=" + complectation +
+                ", defect=" + defect +
                 '}';
     }
 }

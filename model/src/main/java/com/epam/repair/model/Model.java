@@ -1,23 +1,34 @@
 package com.epam.repair.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * The type Model.
  */
 @Entity
+@Table(name = "model")
 public class Model {
 
     /**
      * Model id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+            generator="model_generator")
+    @SequenceGenerator(name="model_generator",
+            sequenceName="model_generator", allocationSize=1000)
+    @Column(name="model_id", updatable=false, nullable=false)
     private Integer modelId;
+
+    @Column(name="model_name", length = 40, nullable=false)
     private  String modelName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="model")
+    private List<Device> devices;
 
     /**
      * Gets model id.
@@ -53,6 +64,24 @@ public class Model {
      */
     public void setModelName(String modelName) {
         this.modelName = modelName;
+    }
+
+    /**
+     * Gets devices.
+     *
+     * @return the devices
+     */
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    /**
+     * Sets devices.
+     *
+     * @param devices the devices
+     */
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 
     @Override

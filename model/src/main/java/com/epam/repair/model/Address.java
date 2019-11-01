@@ -1,6 +1,9 @@
 package com.epam.repair.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * The type Address.
@@ -10,7 +13,7 @@ import javax.persistence.*;
 public class Address {
 
     /**
-     * City id is the primary key.
+     * Address id is the primary key.
      */
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,
@@ -26,13 +29,23 @@ public class Address {
     @Column(name="address_number_apartment", length = 40, nullable=false)
     private String apartmentNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    /**
+     * City id is the foreign key (City to address).
+     */
+    @ManyToOne
     @JoinColumn (name="city_id")
     private City city;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    /**
+     * Street id is the foreign key (Street to address).
+     */
+    @ManyToOne
     @JoinColumn (name="street_id")
     private Street street;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="address")
+    private List<Client> clients;
 
     /**
      * Gets address id.
@@ -122,6 +135,24 @@ public class Address {
      */
     public void setStreet(Street street) {
         this.street = street;
+    }
+
+    /**
+     * Gets clients.
+     *
+     * @return the clients
+     */
+    public List<Client> getClients() {
+        return clients;
+    }
+
+    /**
+     * Sets clients.
+     *
+     * @param clients the clients
+     */
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
     }
 
     @Override
