@@ -3,7 +3,7 @@ buildscript {
         projectGroupName 	= 'com.epam.repair'
         projectVersion 		= '1.0-SNAPSHOT'
         springBootVersion 	= '2.2.0.RELEASE'
-        junitVersion 		= '4.12'
+        junitVersion 		= '5.4.8'
         restAssuredVersion 	= '2.9.0'
         fasterxmlJacksonVersion = '2.10.0'
         postgreSqlVersion = '42.2.8'
@@ -54,9 +54,9 @@ subprojects {
         compile "org.springframework.boot:spring-boot-starter-web"
         compile "org.springframework.boot:spring-boot-starter-web-services"
         compile "com.h2database:h2"
-        compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${fasterxmlJacksonVersion}"
+        compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider"
         testCompile "org.springframework.boot:spring-boot-starter-test"
-        testCompile "junit:junit:${junitVersion}"
+        testCompile "junit:junit"
 
     }
 
