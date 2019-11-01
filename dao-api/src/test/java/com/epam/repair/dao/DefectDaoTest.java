@@ -1,6 +1,7 @@
 package com.epam.repair.dao;
 
-import com.epam.repair.model.Street;
+import com.epam.repair.model.City;
+import com.epam.repair.model.Defect;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ContextConfiguration(classes = TestConfig.class)
 @DataJpaTest
 @TestPropertySource("classpath:application-test.properties")
-class StreetDaoTest {
+class DefectDaoTest {
 
     @Autowired
-    private StreetDao streetDao;
+    private DefectDao defectDao;
 
     @Test
     public void findAll() {
-        List<Street> streets = streetDao.findAll();
+        List<Defect> defects = defectDao.findAll();
 
-        assertNotNull(streets);
-        assertTrue(streets.size() > 0);
+        assertNotNull(defects);
+        assertTrue(defects.size() > 0);
     }
 }

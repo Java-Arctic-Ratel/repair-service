@@ -25,7 +25,7 @@ class CityDaoTest {
 
     @Test
     public void findAll() {
-        List<City> cities = this.cityDao.findAll();
+        List<City> cities = cityDao.findAll();
 
         assertNotNull(cities);
         assertTrue(cities.size() > 0);
