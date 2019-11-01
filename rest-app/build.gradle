@@ -1,7 +1,4 @@
-apply plugin: 'java'
 dependencies {
-  def postgreSqlVersion = '42.2.8'
-  def mysqlConnectorJavaVersion = '8.0.18'
   compile project(':service')
   compile 'org.springframework.boot:spring-boot-starter-actuator'
   compile "org.postgresql:postgresql:${postgreSqlVersion}"

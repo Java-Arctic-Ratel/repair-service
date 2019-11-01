@@ -6,6 +6,8 @@ buildscript {
         junitVersion 		= '4.12'
         restAssuredVersion 	= '2.9.0'
         fasterxmlJacksonVersion = '2.10.0'
+        postgreSqlVersion = '42.2.8'
+        mysqlConnectorJavaVersion = '8.0.18'
     }
 
     repositories {
