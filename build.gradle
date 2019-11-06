@@ -20,14 +20,12 @@ buildscript {
     }
 }
 
-rootProject {
     apply plugin: com.gradle.scan.plugin.BuildScanPlugin
-
     buildScan {
         termsOfServiceUrl = 'https://gradle.com/terms-of-service'
         termsOfServiceAgree = 'yes'
     }
-}
+
 
 allprojects {
     group projectGroupName
