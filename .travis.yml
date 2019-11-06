@@ -7,7 +7,7 @@ before_script:
 
 script:
   - ./gradlew build --scan -s
-  - ./gradlew jacocoTestReport
+#  - ./gradlew jacocoTestReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
