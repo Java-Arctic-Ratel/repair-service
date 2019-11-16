@@ -2,7 +2,6 @@ package com.epam.repair.service;
 
 import com.epam.repair.dao.AddressDao;
 import com.epam.repair.model.Address;
-import com.epam.repair.service.AddressServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,7 +29,8 @@ public class AddressServiceTest {
 
     @Test
     public void findAll() {
-        Mockito.when(addressDao.findAll()).thenReturn(Arrays.asList(createAddressForTest(ADDRESS_ID_1), createAddressForTest(ADDRESS_ID_2)));
+        Mockito.when(addressDao.findAll()).thenReturn(Arrays.asList(createAddressForTest(ADDRESS_ID_1),
+                createAddressForTest(ADDRESS_ID_2)));
         List<Address> addresses = addressService.findAll();
 
         assertNotNull(addresses);

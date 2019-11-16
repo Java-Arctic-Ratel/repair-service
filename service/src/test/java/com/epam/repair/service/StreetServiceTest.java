@@ -2,7 +2,6 @@ package com.epam.repair.service;
 
 import com.epam.repair.dao.StreetDao;
 import com.epam.repair.model.Street;
-import com.epam.repair.service.StreetServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,7 +30,8 @@ public class StreetServiceTest {
 
     @Test
     public void findAll() {
-        Mockito.when(streetDao.findAll()).thenReturn(Arrays.asList(createStreetForTest(STREET_ID_1), createStreetForTest(STREET_ID_2)));
+        Mockito.when(streetDao.findAll()).thenReturn(Arrays.asList(createStreetForTest(STREET_ID_1),
+                createStreetForTest(STREET_ID_2)));
         List<Street> streets = streetService.findAll();
 
         assertNotNull(streets);
