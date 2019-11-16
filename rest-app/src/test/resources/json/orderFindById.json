@@ -1,0 +1,74 @@
+{
+  "repairOrderId": 1,
+  "repairOrderStartDate": "2019-10-12",
+  "repairOrderEndDate": "2019-10-22",
+  "repairOrderIssueDate": "2019-10-20",
+  "repairOrderCostEstimated": 100,
+  "repairOrderCostTotal": 150,
+  "client": {
+    "clientId": 1,
+    "clientPhoneNumber": "+37533033120",
+    "firstName": "First name 1",
+    "lastName": "Last Name 1",
+    "address": {
+      "addressId": 2,
+      "houseNumber": "8",
+      "apartmentNumber": "0",
+      "city": {
+        "cityId": 1,
+        "cityName": "Brest"
+      },
+      "street": {
+        "streetId": 2,
+        "streetName": "pereulok Vilenskiy 2nd"
+      }
+    }
+  },
+  "device": {
+    "deviceId": 1,
+    "deviceIMEIOrSn": "37533033120",
+    "devicePassword": "37533033120",
+    "type": {
+      "typeId": 1,
+      "typeName": "smartphone"
+    },
+    "model": {
+      "modelId": 1,
+      "modelName": "p-smart"
+    },
+    "brand": {
+      "brandId": 1,
+      "brandName": "Huawei"
+    },
+    "appearance": {
+      "appearanceId": 1,
+      "appearanceName": "scratches"
+    },
+    "complectation": {
+      "complectationId": 1,
+      "complectationName": "SIM card"
+    },
+    "defect": {
+      "defectId": 1,
+      "defectName": "not charging"
+    }
+  },
+  "employee": {
+    "employeeId": 1,
+    "firstName": "First name 1",
+    "lastName": "Last Name 1",
+    "employeeType": {
+      "employeeTypeId": 2,
+      "employeeTypeName": "director"
+    }
+  },
+  "sparePart": {
+    "sparePartId": 1,
+    "sparePartName": "screen",
+    "sparePartCost": 50
+  },
+  "status": {
+    "statusId": 1,
+    "statusName": "In work"
+  }
+}

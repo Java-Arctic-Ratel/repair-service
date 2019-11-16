@@ -1,7 +1,7 @@
 package com.epam.repair.rest.controller;
 
-import com.epam.repair.model.City;
-import com.epam.repair.service.CityService;
+import com.epam.repair.model.Address;
+import com.epam.repair.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class CityRestController {
+public class AddressController {
 
     @Autowired
-    private CityService cityService;
+    private AddressService addressService;
 
-    @GetMapping(value = "/city")
-    public List<City> findAll() {
-        return cityService.findAll();
+    @GetMapping(value = "/address")
+    public List<Address> findAll() {
+        return addressService.findAll();
     }
 
 }

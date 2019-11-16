@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class StreetRestController {
+public class StreetController {
 
     @Autowired
     private StreetService streetService;

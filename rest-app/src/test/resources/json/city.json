@@ -1,0 +1,34 @@
+[
+  {
+    "cityId": 1,
+    "cityName": "Brest"
+  },
+  {
+    "cityId": 2,
+    "cityName": "Minsk"
+  },
+  {
+    "cityId": 3,
+    "cityName": "Kobrin"
+  },
+  {
+    "cityId": 4,
+    "cityName": "Pinsk"
+  },
+  {
+    "cityId": 5,
+    "cityName": "Visokoe"
+  },
+  {
+    "cityId": 6,
+    "cityName": "Ivanovo"
+  },
+  {
+    "cityId": 7,
+    "cityName": "Stolin"
+  },
+  {
+    "cityId": 8,
+    "cityName": "Bereza"
+  }
+]
