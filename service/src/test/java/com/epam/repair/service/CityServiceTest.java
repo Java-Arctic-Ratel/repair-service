@@ -2,7 +2,6 @@ package com.epam.repair.service;
 
 import com.epam.repair.dao.CityDao;
 import com.epam.repair.model.City;
-import com.epam.repair.service.CityServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,7 +30,8 @@ public class CityServiceTest {
 
     @Test
     public void findAll() {
-        Mockito.when(cityDao.findAll()).thenReturn(Arrays.asList(createCityForTest(CITY_ID_1), createCityForTest(CITY_ID_2)));
+        Mockito.when(cityDao.findAll()).thenReturn(Arrays.asList(createCityForTest(CITY_ID_1),
+                createCityForTest(CITY_ID_2)));
         List<City> cities = cityService.findAll();
 
         assertNotNull(cities);

@@ -1,6 +1,5 @@
 package com.epam.repair.dao;
 
-import com.epam.repair.model.Address;
 import com.epam.repair.model.Appearance;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

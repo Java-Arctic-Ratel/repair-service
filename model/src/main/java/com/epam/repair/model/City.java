@@ -16,18 +16,18 @@ public class City {
      * City id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="city_generator")
-    @SequenceGenerator(name="city_generator",
-            sequenceName="city_generator", allocationSize=1000)
-    @Column(name="city_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "city_generator")
+    @SequenceGenerator(name = "city_generator",
+            sequenceName = "city_seq", allocationSize = 1)
+    @Column(name = "city_id", updatable = false, nullable = false)
     private Integer cityId;
 
-    @Column(name="city_name", length = 40, nullable=false)
+    @Column(name = "city_name", length = 40, nullable = true)
     private String cityName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="city")
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Address> address;
 
     /**

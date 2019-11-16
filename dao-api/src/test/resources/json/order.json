@@ -1,0 +1,55 @@
+{
+  "repairOrderCostEstimated": 0.00,
+  "repairOrderCostTotal": 0.00,
+  "client": {
+    "clientPhoneNumber": "000000000",
+    "firstName": "000000000",
+    "lastName": "000000000",
+    "address": {
+      "houseNumber": "000000000",
+      "apartmentNumber": "000000000",
+      "city": {
+        "cityName": "000000000"
+      },
+      "street": {
+        "streetName": "000000000"
+      }
+    }
+  },
+  "device": {
+    "deviceIMEIOrSn": "000000000",
+    "devicePassword": "000000000",
+    "type": {
+      "typeName": "000000000"
+    },
+    "model": {
+      "modelName": "000000000"
+    },
+    "brand": {
+      "brandName": "000000000"
+    },
+    "appearance": {
+      "appearanceName": "000000000"
+    },
+    "complectation": {
+      "complectationName": "000000000"
+    },
+    "defect": {
+      "defectName": "000000000"
+    }
+  },
+  "employee": {
+    "firstName": "000000000",
+    "lastName": "000000000",
+    "employeeType": {
+      "employeeTypeName": "000000000"
+    }
+  },
+  "sparePart": {
+    "sparePartName": "000000000",
+    "sparePartCost": 0.00
+  },
+  "status": {
+    "statusName": "000000000"
+  }
+}

@@ -1,7 +1,10 @@
 package com.epam.repair.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -15,51 +18,38 @@ public class Client {
      * Client id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="client_generator")
-    @SequenceGenerator(name="client_generator",
-            sequenceName="client_generator", allocationSize=1000)
-    @Column(name="client_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "client_generator")
+    @SequenceGenerator(name = "client_generator",
+            sequenceName = "client_seq", allocationSize = 1)
+    @Column(name = "client_id", updatable = false, nullable = false)
     private Integer clientId;
 
-    @Column(name="client_phone_number", length = 40, nullable=false)
+    @NotEmpty
+    @NotNull
+    @Column(name = "client_phone_number", length = 40, nullable = false)
     private String clientPhoneNumber;
 
-    /**
-     * First name id is the foreign key (First name to client).
-     */
-    @ManyToOne
-    @JoinColumn (name="first_name_id")
-    private FirstName firstName;
+    @NotEmpty
+    @NotNull
+    @Column(name = "client_first_name", length = 40, nullable = false)
+    private String firstName;
 
-    /**
-     * Last name id is the foreign key (Last name to client).
-     */
-    @ManyToOne
-    @JoinColumn (name="last_name_id")
-    private LastName lastName;
-
-    /**
-     * Patronymic id is the foreign key (Patronymic to client).
-     */
-    @ManyToOne
-    @JoinColumn (name="patronymic_id")
-    private Patronymic patronymic;
+    @NotEmpty
+    @NotNull
+    @Column(name = "client_last_name", length = 40, nullable = false)
+    private String lastName;
 
     /**
      * Address id is the foreign key (Address to client).
      */
-    @ManyToOne
-    @JoinColumn (name="address_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @JsonIgnore
-    @OneToMany(mappedBy="client")
-    private List<Device> devices;
-
-    @JsonIgnore
-    @OneToMany(mappedBy="client")
-    private List<Orders> orders;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<RepairOrder> repairOrders;
 
     /**
      * Gets client id.
@@ -102,7 +92,7 @@ public class Client {
      *
      * @return the first name
      */
-    public FirstName getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -111,7 +101,7 @@ public class Client {
      *
      * @param firstName the first name
      */
-    public void setFirstName(FirstName firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -120,7 +110,7 @@ public class Client {
      *
      * @return the last name
      */
-    public LastName getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -129,26 +119,8 @@ public class Client {
      *
      * @param lastName the last name
      */
-    public void setLastName(LastName lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    /**
-     * Gets patronymic.
-     *
-     * @return the patronymic
-     */
-    public Patronymic getPatronymic() {
-        return patronymic;
-    }
-
-    /**
-     * Sets patronymic.
-     *
-     * @param patronymic the patronymic
-     */
-    public void setPatronymic(Patronymic patronymic) {
-        this.patronymic = patronymic;
     }
 
     /**
@@ -170,39 +142,21 @@ public class Client {
     }
 
     /**
-     * Gets devices.
+     * Gets repair orders.
      *
-     * @return the devices
+     * @return the repair orders
      */
-    public List<Device> getDevices() {
-        return devices;
+    public List<RepairOrder> getRepairOrders() {
+        return repairOrders;
     }
 
     /**
-     * Sets devices.
+     * Sets repair orders.
      *
-     * @param devices the devices
+     * @param repairOrders the repair orders
      */
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
-    }
-
-    /**
-     * Gets orders.
-     *
-     * @return the orders
-     */
-    public List<Orders> getOrders() {
-        return orders;
-    }
-
-    /**
-     * Sets orders.
-     *
-     * @param orders the orders
-     */
-    public void setOrders(List<Orders> orders) {
-        this.orders = orders;
+    public void setRepairOrders(List<RepairOrder> repairOrders) {
+        this.repairOrders = repairOrders;
     }
 
     @Override
@@ -210,9 +164,8 @@ public class Client {
         return "Client{" +
                 "clientId=" + clientId +
                 ", clientPhoneNumber='" + clientPhoneNumber + '\'' +
-                ", firstName=" + firstName +
-                ", lastName=" + lastName +
-                ", patronymic=" + patronymic +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", address=" + address +
                 '}';
     }

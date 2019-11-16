@@ -16,19 +16,19 @@ public class Appearance {
      * Appearance id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="appearance_generator")
-    @SequenceGenerator(name="appearance_generator",
-            sequenceName="appearance_generator", allocationSize=1000)
-    @Column(name="appearance_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "appearance_generator")
+    @SequenceGenerator(name = "appearance_generator",
+            sequenceName = "appearance_seq", allocationSize = 1)
+    @Column(name = "appearance_id", updatable = false, nullable = false)
     private Integer appearanceId;
 
-    @Column(name="appearance_name", length = 40, nullable=false)
+    @Column(name = "appearance_name", length = 40, nullable = true)
     private String appearanceName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="appearance")
-    private List<DeviceCondition> deviceConditions;
+    @OneToMany(mappedBy = "appearance", cascade = CascadeType.ALL)
+    private List<Device> devices;
 
     /**
      * Gets appearance id.
@@ -67,21 +67,21 @@ public class Appearance {
     }
 
     /**
-     * Gets device conditions.
+     * Gets devices.
      *
-     * @return the device conditions
+     * @return the devices
      */
-    public List<DeviceCondition> getDeviceConditions() {
-        return deviceConditions;
+    public List<Device> getDevices() {
+        return devices;
     }
 
     /**
-     * Sets device conditions.
+     * Sets devices.
      *
-     * @param deviceConditions the device conditions
+     * @param devices the devices
      */
-    public void setDeviceConditions(List<DeviceCondition> deviceConditions) {
-        this.deviceConditions = deviceConditions;
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 
     @Override
