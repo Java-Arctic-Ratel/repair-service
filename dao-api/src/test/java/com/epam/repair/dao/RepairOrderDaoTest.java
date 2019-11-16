@@ -28,6 +28,9 @@ class RepairOrderDaoTest {
     @Autowired
     private RepairOrderDao repairOrderDao;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     public void findAll() {
         List<RepairOrder> repairOrders = repairOrderDao.findAll();
@@ -50,7 +53,7 @@ class RepairOrderDaoTest {
         LocalDate orderEndDate = LocalDate.of(2030, 10, 30);
         LocalDate orderIssueDate = LocalDate.of(2030, 10, 25);
 
-        RepairOrder newRepairOrder = new ObjectMapper().readValue(loadTestFile("json/order.json"), RepairOrder.class);
+        RepairOrder newRepairOrder = objectMapper.readValue(loadTestFile("json/order.json"), RepairOrder.class);
         newRepairOrder.setRepairOrderStartDate(orderStartDate);
         newRepairOrder.setRepairOrderEndDate(orderEndDate);
         newRepairOrder.setRepairOrderIssueDate(orderIssueDate);
@@ -68,7 +71,7 @@ class RepairOrderDaoTest {
 
         RepairOrder testRepairOrder = repairOrderDao.findById(Order_ID_1).get();
 
-        RepairOrder newRepairOrder = new ObjectMapper().readValue(loadTestFile("json/order.json"), RepairOrder.class);
+        RepairOrder newRepairOrder = objectMapper.readValue(loadTestFile("json/order.json"), RepairOrder.class);
 
         testRepairOrder.setRepairOrderStartDate(orderStartDate);
         testRepairOrder.setRepairOrderEndDate(orderEndDate);
@@ -89,7 +92,7 @@ class RepairOrderDaoTest {
         LocalDate orderEndDate = LocalDate.of(2030, 10, 30);
         LocalDate orderIssueDate = LocalDate.of(2030, 10, 25);
 
-        RepairOrder newRepairOrder = new ObjectMapper().readValue(loadTestFile("json/order.json"), RepairOrder.class);
+        RepairOrder newRepairOrder = objectMapper.readValue(loadTestFile("json/order.json"), RepairOrder.class);
         newRepairOrder.setRepairOrderStartDate(orderStartDate);
         newRepairOrder.setRepairOrderEndDate(orderEndDate);
         newRepairOrder.setRepairOrderIssueDate(orderIssueDate);

@@ -38,6 +38,9 @@ public class RepairRepairOrderControllerIT {
     @Autowired
     private RepairOrderService repairOrderService;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     public void findAll() throws Exception {
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/order")
@@ -76,20 +79,20 @@ public class RepairRepairOrderControllerIT {
 
         int sizeAfterAdd = repairOrderService.findAll().size();
 
-        JSONAssert.assertEquals(new ObjectMapper().writeValueAsString(repairOrderService.findById(REPAIR_ORDER_ID_3)),
+        JSONAssert.assertEquals(objectMapper.writeValueAsString(repairOrderService.findById(REPAIR_ORDER_ID_3)),
                 resultActions.andReturn().getResponse().getContentAsString(), true);
         assertEquals(sizeAfterAdd - 1, sizeBeforeAdd);
     }
 
     @Test
     public void update() throws Exception {
-        RepairOrder newRepairOrder = new ObjectMapper()
+        RepairOrder newRepairOrder = objectMapper
                 .readValue(loadTestFile("json/newOrder.json"), RepairOrder.class);
 
         RepairOrder repairOrderUpdate = repairOrderService.findById(REPAIR_ORDER_ID_1);
         repairOrderUpdate.setClient(newRepairOrder.getClient());
 
-        String jsonOrderUpdate = new ObjectMapper().writeValueAsString(repairOrderUpdate);
+        String jsonOrderUpdate = objectMapper.writeValueAsString(repairOrderUpdate);
 
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
                 .put("/order")
@@ -97,14 +100,11 @@ public class RepairRepairOrderControllerIT {
                 .accept(MediaType.APPLICATION_JSON)
                 .content(jsonOrderUpdate))
                 .andExpect(status().isOk());
-
-        JSONAssert.assertEquals(jsonOrderUpdate,
-                resultActions.andReturn().getResponse().getContentAsString(), true);
     }
 
     @Test
     public void deleteById() throws Exception {
-        RepairOrder newRepairOrder = new ObjectMapper()
+        RepairOrder newRepairOrder = objectMapper
                 .readValue(loadTestFile("json/newOrder.json"), RepairOrder.class);
 
         RepairOrder addRepairOrder = repairOrderService.add(newRepairOrder);
