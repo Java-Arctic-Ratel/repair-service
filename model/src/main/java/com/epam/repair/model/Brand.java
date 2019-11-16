@@ -16,18 +16,18 @@ public class Brand {
      * Brand id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="brand_generator")
-    @SequenceGenerator(name="brand_generator",
-            sequenceName="brand_generator", allocationSize=1000)
-    @Column(name="brand_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "brand_generator")
+    @SequenceGenerator(name = "brand_generator",
+            sequenceName = "brand_seq", allocationSize = 1)
+    @Column(name = "brand_id", updatable = false, nullable = false)
     private Integer brandId;
 
-    @Column(name="brand_name", length = 40, nullable=false)
-    private  String brandName;
+    @Column(name = "brand_name", length = 40, nullable = false)
+    private String brandName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="brand")
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private List<Device> devices;
 
     /**

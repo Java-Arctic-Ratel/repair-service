@@ -16,18 +16,18 @@ public class Model {
      * Model id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="model_generator")
-    @SequenceGenerator(name="model_generator",
-            sequenceName="model_generator", allocationSize=1000)
-    @Column(name="model_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "model_generator")
+    @SequenceGenerator(name = "model_generator",
+            sequenceName = "model_seq", allocationSize = 1)
+    @Column(name = "model_id", updatable = false, nullable = false)
     private Integer modelId;
 
-    @Column(name="model_name", length = 40, nullable=false)
-    private  String modelName;
+    @Column(name = "model_name", length = 40, nullable = false)
+    private String modelName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="model")
+    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
     private List<Device> devices;
 
     /**

@@ -3,6 +3,8 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -16,19 +18,21 @@ public class Status {
      * Status id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="status_generator")
-    @SequenceGenerator(name="status_generator",
-            sequenceName="status_generator", allocationSize=1000)
-    @Column(name="status_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "status_generator")
+    @SequenceGenerator(name = "status_generator",
+            sequenceName = "status_seq", allocationSize = 1)
+    @Column(name = "status_id", updatable = false, nullable = false)
     private Integer statusId;
 
-    @Column(name="status_name", length = 40, nullable=false)
-    private  String statusName;
+    @NotEmpty
+    @NotNull
+    @Column(name = "status_name", length = 40, nullable = false)
+    private String statusName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="status")
-    private List<Orders> orders;
+    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
+    private List<RepairOrder> repairOrders;
 
     /**
      * Gets status id.
@@ -64,24 +68,6 @@ public class Status {
      */
     public void setStatusName(String statusName) {
         this.statusName = statusName;
-    }
-
-    /**
-     * Gets orders.
-     *
-     * @return the orders
-     */
-    public List<Orders> getOrders() {
-        return orders;
-    }
-
-    /**
-     * Sets orders.
-     *
-     * @param orders the orders
-     */
-    public void setOrders(List<Orders> orders) {
-        this.orders = orders;
     }
 
     @Override

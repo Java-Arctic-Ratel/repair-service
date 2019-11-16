@@ -3,6 +3,8 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -16,50 +18,66 @@ public class Device {
      * Device id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="device_generator")
-    @SequenceGenerator(name="device_generator",
-            sequenceName="device_generator", allocationSize=1000)
-    @Column(name="device_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "device_generator")
+    @SequenceGenerator(name = "device_generator",
+            sequenceName = "device_seq", allocationSize = 1)
+    @Column(name = "device_id", updatable = false, nullable = false)
     private Integer deviceId;
 
-    @Column(name="device_imei_or_sn", length = 40, nullable=false)
+    @NotEmpty
+    @NotNull
+    @Column(name = "device_imei_or_sn", length = 40, nullable = false)
     private String deviceIMEIOrSn;
 
-    @Column(name="device_password", length = 40, nullable=false)
+    @Column(name = "device_password", length = 40, nullable = true)
     private String devicePassword;
 
     /**
-     * Client id is the foreign key (Client to device).
+     * Type id is the foreign key (Type to device).
      */
-    @ManyToOne
-    @JoinColumn (name="client_id")
-    private Client client;
-
-    /**
-     * Device condition id is the foreign key (Device condition to device).
-     */
-    @ManyToOne
-    @JoinColumn (name="device_condition_id")
-    private DeviceCondition deviceCondition;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "type_id")
+    private Type type;
 
     /**
      * Model id is the foreign key (Model to device).
      */
-    @ManyToOne
-    @JoinColumn (name="model_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "model_id")
     private Model model;
 
     /**
      * Brand id is the foreign key (Brand to device).
      */
-    @ManyToOne
-    @JoinColumn (name="brand_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 
+    /**
+     * Appearance id is the foreign key (Appearance to device).
+     */
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "appearance_id")
+    private Appearance appearance;
+
+    /**
+     * Complectation id is the foreign key (Complectation to device).
+     */
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "complectation_id")
+    private Complectation complectation;
+
+    /**
+     * Defect id is the foreign key (Defect to device).
+     */
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "defect_id")
+    private Defect defect;
+
     @JsonIgnore
-    @OneToMany(mappedBy="device")
-    private List<Orders> orders;
+    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
+    private List<RepairOrder> repairOrders;
 
     /**
      * Gets device id.
@@ -116,39 +134,21 @@ public class Device {
     }
 
     /**
-     * Gets client.
+     * Gets type.
      *
-     * @return the client
+     * @return the type
      */
-    public Client getClient() {
-        return client;
+    public Type getType() {
+        return type;
     }
 
     /**
-     * Sets client.
+     * Sets type.
      *
-     * @param client the client
+     * @param type the type
      */
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    /**
-     * Gets device condition.
-     *
-     * @return the device condition
-     */
-    public DeviceCondition getDeviceCondition() {
-        return deviceCondition;
-    }
-
-    /**
-     * Sets device condition.
-     *
-     * @param deviceCondition the device condition
-     */
-    public void setDeviceCondition(DeviceCondition deviceCondition) {
-        this.deviceCondition = deviceCondition;
+    public void setType(Type type) {
+        this.type = type;
     }
 
     /**
@@ -188,21 +188,75 @@ public class Device {
     }
 
     /**
-     * Gets orders.
+     * Gets appearance.
      *
-     * @return the orders
+     * @return the appearance
      */
-    public List<Orders> getOrders() {
-        return orders;
+    public Appearance getAppearance() {
+        return appearance;
     }
 
     /**
-     * Sets orders.
+     * Sets appearance.
      *
-     * @param orders the orders
+     * @param appearance the appearance
      */
-    public void setOrders(List<Orders> orders) {
-        this.orders = orders;
+    public void setAppearance(Appearance appearance) {
+        this.appearance = appearance;
+    }
+
+    /**
+     * Gets complectation.
+     *
+     * @return the complectation
+     */
+    public Complectation getComplectation() {
+        return complectation;
+    }
+
+    /**
+     * Sets complectation.
+     *
+     * @param complectation the complectation
+     */
+    public void setComplectation(Complectation complectation) {
+        this.complectation = complectation;
+    }
+
+    /**
+     * Gets defect.
+     *
+     * @return the defect
+     */
+    public Defect getDefect() {
+        return defect;
+    }
+
+    /**
+     * Sets defect.
+     *
+     * @param defect the defect
+     */
+    public void setDefect(Defect defect) {
+        this.defect = defect;
+    }
+
+    /**
+     * Gets repair orders.
+     *
+     * @return the repair orders
+     */
+    public List<RepairOrder> getRepairOrders() {
+        return repairOrders;
+    }
+
+    /**
+     * Sets repair orders.
+     *
+     * @param repairOrders the repair orders
+     */
+    public void setRepairOrders(List<RepairOrder> repairOrders) {
+        this.repairOrders = repairOrders;
     }
 
     @Override
@@ -211,10 +265,12 @@ public class Device {
                 "deviceId=" + deviceId +
                 ", deviceIMEIOrSn='" + deviceIMEIOrSn + '\'' +
                 ", devicePassword='" + devicePassword + '\'' +
-                ", client=" + client +
-                ", deviceCondition=" + deviceCondition +
+                ", type=" + type +
                 ", model=" + model +
                 ", brand=" + brand +
+                ", appearance=" + appearance +
+                ", complectation=" + complectation +
+                ", defect=" + defect +
                 '}';
     }
 }

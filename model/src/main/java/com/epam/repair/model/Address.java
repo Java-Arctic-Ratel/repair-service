@@ -16,35 +16,35 @@ public class Address {
      * Address id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="address_generator")
-    @SequenceGenerator(name="address_generator",
-            sequenceName="address_generator", allocationSize=1000)
-    @Column(name="address_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "address_generator")
+    @SequenceGenerator(name = "address_generator",
+            sequenceName = "address_seq", allocationSize = 1)
+    @Column(name = "address_id", updatable = false, nullable = false)
     private Integer addressId;
 
-    @Column(name="address_number_house", length = 40, nullable=false)
+    @Column(name = "address_number_house", length = 40, nullable = true)
     private String houseNumber;
 
-    @Column(name="address_number_apartment", length = 40, nullable=false)
+    @Column(name = "address_number_apartment", length = 40, nullable = true)
     private String apartmentNumber;
 
     /**
      * City id is the foreign key (City to address).
      */
-    @ManyToOne
-    @JoinColumn (name="city_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
     private City city;
 
     /**
      * Street id is the foreign key (Street to address).
      */
-    @ManyToOne
-    @JoinColumn (name="street_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "street_id")
     private Street street;
 
     @JsonIgnore
-    @OneToMany(mappedBy="address")
+    @OneToMany(mappedBy = "address")
     private List<Client> clients;
 
     /**

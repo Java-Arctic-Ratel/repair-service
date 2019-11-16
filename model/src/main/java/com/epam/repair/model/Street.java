@@ -16,18 +16,18 @@ public class Street {
      * Street id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="street_generator")
-    @SequenceGenerator(name="street_generator",
-            sequenceName="street_generator", allocationSize=1000)
-    @Column(name="street_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "street_generator")
+    @SequenceGenerator(name = "street_generator",
+            sequenceName = "street_seq", allocationSize = 1)
+    @Column(name = "street_id", updatable = false, nullable = false)
     private Integer streetId;
 
-    @Column(name="street_name", length = 40, nullable=false)
+    @Column(name = "street_name", length = 40, nullable = true)
     private String streetName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="street")
+    @OneToMany(mappedBy = "street", cascade = CascadeType.ALL)
     private List<Address> address;
 
 

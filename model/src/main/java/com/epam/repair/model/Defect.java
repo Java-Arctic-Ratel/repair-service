@@ -16,19 +16,19 @@ public class Defect {
      * Defect id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="defect_generator")
-    @SequenceGenerator(name="defect_generator",
-            sequenceName="defect_generator", allocationSize=1000)
-    @Column(name="defect_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "defect_generator")
+    @SequenceGenerator(name = "defect_generator",
+            sequenceName = "defect_seq", allocationSize = 1)
+    @Column(name = "defect_id", updatable = false, nullable = false)
     private Integer defectId;
 
-    @Column(name="defect_name", length = 40, nullable=false)
-    private  String defectName;
+    @Column(name = "defect_name", length = 40, nullable = true)
+    private String defectName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="defect")
-    private List<DeviceCondition> deviceConditions;
+    @OneToMany(mappedBy = "defect", cascade = CascadeType.ALL)
+    private List<Device> devices;
 
     /**
      * Gets defect id.
@@ -67,21 +67,21 @@ public class Defect {
     }
 
     /**
-     * Gets device conditions.
+     * Gets devices.
      *
-     * @return the device conditions
+     * @return the devices
      */
-    public List<DeviceCondition> getDeviceConditions() {
-        return deviceConditions;
+    public List<Device> getDevices() {
+        return devices;
     }
 
     /**
-     * Sets device conditions.
+     * Sets devices.
      *
-     * @param deviceConditions the device conditions
+     * @param devices the devices
      */
-    public void setDeviceConditions(List<DeviceCondition> deviceConditions) {
-        this.deviceConditions = deviceConditions;
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 
     @Override

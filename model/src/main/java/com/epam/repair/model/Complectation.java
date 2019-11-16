@@ -16,19 +16,19 @@ public class Complectation {
      * Complectation id is the primary key.
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-            generator="complectation_generator")
-    @SequenceGenerator(name="complectation_generator",
-            sequenceName="complectation_generator", allocationSize=1000)
-    @Column(name="complectation_id", updatable=false, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "complectation_generator")
+    @SequenceGenerator(name = "complectation_generator",
+            sequenceName = "complectation_seq", allocationSize = 1)
+    @Column(name = "complectation_id", updatable = false, nullable = false)
     private Integer complectationId;
 
-    @Column(name="complectation_name", length = 40, nullable=false)
-    private  String complectationName;
+    @Column(name = "complectation_name", length = 40, nullable = true)
+    private String complectationName;
 
     @JsonIgnore
-    @OneToMany(mappedBy="complectation")
-    private List<DeviceCondition> deviceConditions;
+    @OneToMany(mappedBy = "complectation", cascade = CascadeType.ALL)
+    private List<Device> devices;
 
     /**
      * Gets complectation id.
@@ -67,21 +67,21 @@ public class Complectation {
     }
 
     /**
-     * Gets device conditions.
+     * Gets devices.
      *
-     * @return the device conditions
+     * @return the devices
      */
-    public List<DeviceCondition> getDeviceConditions() {
-        return deviceConditions;
+    public List<Device> getDevices() {
+        return devices;
     }
 
     /**
-     * Sets device conditions.
+     * Sets devices.
      *
-     * @param deviceConditions the device conditions
+     * @param devices the devices
      */
-    public void setDeviceConditions(List<DeviceCondition> deviceConditions) {
-        this.deviceConditions = deviceConditions;
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 
     @Override
