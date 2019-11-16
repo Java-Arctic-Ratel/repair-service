@@ -1,7 +1,6 @@
 package com.epam.repair.dao;
 
-import com.epam.repair.model.Defect;
-import com.epam.repair.model.DeviceCondition;
+import com.epam.repair.model.SparePart;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ContextConfiguration(classes = TestConfig.class)
 @DataJpaTest
 @TestPropertySource("classpath:application-test.properties")
-class DeviceConditionDaoTest {
+class SparePartDaoTest {
 
     @Autowired
-    private DeviceConditionDao deviceConditionDao;
+    private SparePartDao sparePartDao;
 
     @Test
     public void findAll() {
-        List<DeviceCondition> deviceConditions = deviceConditionDao.findAll();
+        List<SparePart> spareParts = sparePartDao.findAll();
 
-        assertNotNull(deviceConditions);
-        assertTrue(deviceConditions.size() > 0);
+        assertNotNull(spareParts);
+        assertTrue(spareParts.size() > 0);
     }
 }

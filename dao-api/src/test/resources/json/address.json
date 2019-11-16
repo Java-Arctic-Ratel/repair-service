@@ -1,0 +1,10 @@
+{
+  "houseNumber": "0000",
+  "apartmentNumber": "0000",
+  "city": {
+    "cityName": "0000"
+  },
+  "street": {
+    "streetName": "0000"
+  }
+}

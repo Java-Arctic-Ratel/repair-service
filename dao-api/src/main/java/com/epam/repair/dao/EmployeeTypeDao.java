@@ -1,9 +1,9 @@
 package com.epam.repair.dao;
 
-import com.epam.repair.model.FirstName;
+import com.epam.repair.model.EmployeeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FirstNameDao extends JpaRepository <FirstName, Integer> {
+public interface EmployeeTypeDao extends JpaRepository<EmployeeType, Integer> {
 }

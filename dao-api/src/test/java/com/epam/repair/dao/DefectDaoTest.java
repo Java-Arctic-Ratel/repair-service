@@ -1,6 +1,5 @@
 package com.epam.repair.dao;
 
-import com.epam.repair.model.City;
 import com.epam.repair.model.Defect;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
