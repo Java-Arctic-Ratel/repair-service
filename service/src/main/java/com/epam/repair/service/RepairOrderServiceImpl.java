@@ -5,10 +5,10 @@ import com.epam.repair.model.RepairOrder;
 import com.epam.repair.model.dto.RepairOrderDTO;
 import com.epam.repair.service.mapper.RepairOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Order Service Interface implementation.
@@ -29,9 +29,9 @@ public class RepairOrderServiceImpl implements RepairOrderService {
     }
 
     @Override
-    public List<RepairOrderDTO> findAll() {
-        List<RepairOrderDTO> repairOrderDTO = repairOrderMapper.repairOrderToOrderDTO(repairOrderDao.findAll());
-        return repairOrderDTO;
+    public Page<RepairOrderDTO> findAll(Pageable pageable) {
+        Page<RepairOrder> repairOrders = repairOrderDao.findAll(pageable);
+        return  repairOrders.map(repairOrder -> repairOrderMapper.repairOrderToOrderDTO(repairOrder));
     }
 
     @Override

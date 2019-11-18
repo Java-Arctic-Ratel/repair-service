@@ -4,12 +4,13 @@ import com.epam.repair.model.RepairOrder;
 import com.epam.repair.model.dto.RepairOrderDTO;
 import com.epam.repair.service.RepairOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@CrossOrigin
 @RestController
 public class RepairOrderController {
 
@@ -17,8 +18,8 @@ public class RepairOrderController {
     private RepairOrderService repairOrderService;
 
     @GetMapping(value = "/order")
-    public List<RepairOrderDTO> findAll() {
-        return repairOrderService.findAll();
+    public Page<RepairOrderDTO> findAll(Pageable pageable) {
+        return repairOrderService.findAll(pageable);
     }
 
     @GetMapping(value = "/order/{repairOrderId}")

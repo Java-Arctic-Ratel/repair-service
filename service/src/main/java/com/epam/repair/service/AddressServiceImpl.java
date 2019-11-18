@@ -2,10 +2,10 @@ package com.epam.repair.service;
 
 import com.epam.repair.dao.AddressDao;
 import com.epam.repair.model.Address;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Address Service Interface implementation.
@@ -21,7 +21,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> findAll(){
-        return addressDao.findAll();
+    public Page<Address> findAll(Pageable pageable) {
+        return addressDao.findAll(pageable);
     }
 }

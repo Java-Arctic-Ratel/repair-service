@@ -2,10 +2,10 @@ package com.epam.repair.service;
 
 import com.epam.repair.dao.CityDao;
 import com.epam.repair.model.City;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * City Service Interface implementation.
@@ -21,7 +21,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public List<City> findAll() {
-        return cityDao.findAll();
+    public Page<City> findAll(Pageable pageable) {
+        return cityDao.findAll(pageable);
     }
 }

@@ -2,8 +2,8 @@ package com.epam.repair.service;
 
 import com.epam.repair.model.RepairOrder;
 import com.epam.repair.model.dto.RepairOrderDTO;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * The interface Repair order service.
@@ -13,9 +13,10 @@ public interface RepairOrderService {
     /**
      * Repair order find all list.
      *
+     * @param pageable the pageable
      * @return the list
      */
-    List<RepairOrderDTO> findAll();
+    Page<RepairOrderDTO> findAll(Pageable pageable);
 
     /**
      * Repair order find by id repair order.
