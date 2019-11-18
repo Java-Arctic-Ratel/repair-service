@@ -27,6 +27,9 @@ class AddressDaoTest {
     @Autowired
     private AddressDao addressDao;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     public void findAll() {
         List<Address> addresses = addressDao.findAll();
@@ -45,7 +48,7 @@ class AddressDaoTest {
 
     @Test
     public void save() throws IOException {
-        Address newAddress = new ObjectMapper().readValue(loadTestFile("json/address.json"), Address.class);
+        Address newAddress = objectMapper.readValue(loadTestFile("json/address.json"), Address.class);
         Address addAddress = addressDao.save(newAddress);
 
         assertNotNull(addAddress);
@@ -56,7 +59,7 @@ class AddressDaoTest {
     public void update() throws IOException {
         Address testAddress = addressDao.findById(ADDRESS_ID_1).get();
 
-        Address newAddress = new ObjectMapper().readValue(loadTestFile("json/address.json"), Address.class);
+        Address newAddress = objectMapper.readValue(loadTestFile("json/address.json"), Address.class);
 
         testAddress.setApartmentNumber(newAddress.getApartmentNumber());
         testAddress.setHouseNumber(newAddress.getHouseNumber());
@@ -68,7 +71,7 @@ class AddressDaoTest {
 
     @Test
     public void deleteById() throws IOException {
-        Address newAddress = new ObjectMapper().readValue(loadTestFile("json/address.json"), Address.class);
+        Address newAddress = objectMapper.readValue(loadTestFile("json/address.json"), Address.class);
 
         addressDao.save(newAddress);
         int sizeBeforeDelete = addressDao.findAll().size();

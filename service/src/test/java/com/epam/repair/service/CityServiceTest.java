@@ -7,10 +7,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,6 +22,8 @@ public class CityServiceTest {
     private static final Integer CITY_ID_1 = 1;
     private static final Integer CITY_ID_2 = 2;
     private static final String CITY_NAME = "cityName-";
+    private Integer PAGE_0 = 0;
+    private Integer SIZE_2 = 2;
 
     @InjectMocks
     private CityServiceImpl cityService;
@@ -32,10 +35,10 @@ public class CityServiceTest {
     public void findAll() {
         Mockito.when(cityDao.findAll()).thenReturn(Arrays.asList(createCityForTest(CITY_ID_1),
                 createCityForTest(CITY_ID_2)));
-        List<City> cities = cityService.findAll();
+        Page<City> cities = cityService.findAll(PageRequest.of(PAGE_0, SIZE_2));
 
         assertNotNull(cities);
-        assertTrue(cities.size() > 0);
+        assertTrue(cities.getContent().size() > 0);
 
         Mockito.verify(cityDao).findAll();
     }

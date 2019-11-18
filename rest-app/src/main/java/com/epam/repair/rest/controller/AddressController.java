@@ -3,11 +3,13 @@ package com.epam.repair.rest.controller;
 import com.epam.repair.model.Address;
 import com.epam.repair.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
+@CrossOrigin
 @RestController
 public class AddressController {
 
@@ -15,8 +17,7 @@ public class AddressController {
     private AddressService addressService;
 
     @GetMapping(value = "/address")
-    public List<Address> findAll() {
-        return addressService.findAll();
+    public Page<Address> findAll(Pageable pageable) {
+        return addressService.findAll(pageable);
     }
-
 }

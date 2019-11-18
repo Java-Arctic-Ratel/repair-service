@@ -1,6 +1,5 @@
 package com.epam.repair.rest;
 
-import com.epam.repair.rest.controller.StreetController;
 import com.epam.repair.utils.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,9 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class StreetControllerIT {
-
-    @Autowired
-    private StreetController streetController;
 
     @Autowired
     private MockMvc mockMvc;

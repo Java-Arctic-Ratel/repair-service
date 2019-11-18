@@ -7,10 +7,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,6 +21,8 @@ public class AddressServiceTest {
 
     private static final Integer ADDRESS_ID_1 = 1;
     private static final Integer ADDRESS_ID_2 = 2;
+    private Integer PAGE_0 = 0;
+    private Integer SIZE_2 = 2;
 
     @InjectMocks
     private AddressServiceImpl addressService;
@@ -31,10 +34,10 @@ public class AddressServiceTest {
     public void findAll() {
         Mockito.when(addressDao.findAll()).thenReturn(Arrays.asList(createAddressForTest(ADDRESS_ID_1),
                 createAddressForTest(ADDRESS_ID_2)));
-        List<Address> addresses = addressService.findAll();
+        Page<Address> addresses = addressService.findAll(PageRequest.of(PAGE_0, SIZE_2));
 
         assertNotNull(addresses);
-        assertTrue(addresses.size() > 0);
+        assertTrue(addresses.getContent().size() > 0);
 
         Mockito.verify(addressDao).findAll();
     }
@@ -47,4 +50,3 @@ public class AddressServiceTest {
         return address;
     }
 }
-

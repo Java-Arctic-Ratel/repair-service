@@ -1,34 +1,37 @@
-[
-  {
-    "cityId": 1,
-    "cityName": "Brest"
+{
+  "content": [
+    {
+      "cityId": 1,
+      "cityName": "Brest"
+    },
+    {
+      "cityId": 2,
+      "cityName": "Minsk"
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": false,
+      "unsorted": true,
+      "empty": true
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 2,
+    "paged": true,
+    "unpaged": false
   },
-  {
-    "cityId": 2,
-    "cityName": "Minsk"
+  "totalPages": 4,
+  "totalElements": 8,
+  "last": false,
+  "number": 0,
+  "sort": {
+    "sorted": false,
+    "unsorted": true,
+    "empty": true
   },
-  {
-    "cityId": 3,
-    "cityName": "Kobrin"
-  },
-  {
-    "cityId": 4,
-    "cityName": "Pinsk"
-  },
-  {
-    "cityId": 5,
-    "cityName": "Visokoe"
-  },
-  {
-    "cityId": 6,
-    "cityName": "Ivanovo"
-  },
-  {
-    "cityId": 7,
-    "cityName": "Stolin"
-  },
-  {
-    "cityId": 8,
-    "cityName": "Bereza"
-  }
-]
+  "size": 2,
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
+}

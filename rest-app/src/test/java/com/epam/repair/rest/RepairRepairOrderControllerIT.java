@@ -18,19 +18,21 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import javax.transaction.Transactional;
 
 import static com.epam.repair.utils.TestUtils.loadTestFile;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
 public class RepairRepairOrderControllerIT {
-    private static final Integer REPAIR_ORDER_ID_1 = 1;
-    private static final Integer REPAIR_ORDER_ID_3 = 3;
+    private Integer REPAIR_ORDER_ID_1 = 1;
+    private Integer REPAIR_ORDER_ID_3 = 3;
+    private Integer PAGE_0 = 0;
+    private Integer SIZE_2 = 2;
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,13 +40,18 @@ public class RepairRepairOrderControllerIT {
     @Autowired
     private RepairOrderService repairOrderService;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     public void findAll() throws Exception {
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/order")
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/order?page=0&size=2")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.number", is(PAGE_0)))
+                .andExpect(jsonPath("$.size", is(SIZE_2)));
 
         JSONAssert.assertEquals(loadTestFile("json/orderDTO.json"),
                 resultActions.andReturn().getResponse().getContentAsString(), true);
@@ -65,8 +72,6 @@ public class RepairRepairOrderControllerIT {
 
     @Test
     public void add() throws Exception {
-        int sizeBeforeAdd = repairOrderService.findAll().size();
-
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
                 .post("/order")
                 .content(loadTestFile("json/newOrder.json"))
@@ -74,50 +79,40 @@ public class RepairRepairOrderControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
 
-        int sizeAfterAdd = repairOrderService.findAll().size();
-
-        JSONAssert.assertEquals(new ObjectMapper().writeValueAsString(repairOrderService.findById(REPAIR_ORDER_ID_3)),
+        assertNotNull(repairOrderService.findById(REPAIR_ORDER_ID_3));
+        JSONAssert.assertEquals(objectMapper.writeValueAsString(repairOrderService.findById(REPAIR_ORDER_ID_3)),
                 resultActions.andReturn().getResponse().getContentAsString(), true);
-        assertEquals(sizeAfterAdd - 1, sizeBeforeAdd);
     }
 
     @Test
     public void update() throws Exception {
-        RepairOrder newRepairOrder = new ObjectMapper()
+        RepairOrder newRepairOrder = objectMapper
                 .readValue(loadTestFile("json/newOrder.json"), RepairOrder.class);
 
         RepairOrder repairOrderUpdate = repairOrderService.findById(REPAIR_ORDER_ID_1);
         repairOrderUpdate.setClient(newRepairOrder.getClient());
 
-        String jsonOrderUpdate = new ObjectMapper().writeValueAsString(repairOrderUpdate);
+        String jsonOrderUpdate = objectMapper.writeValueAsString(repairOrderUpdate);
 
-        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+        mockMvc.perform(MockMvcRequestBuilders
                 .put("/order")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(jsonOrderUpdate))
                 .andExpect(status().isOk());
-
-        JSONAssert.assertEquals(jsonOrderUpdate,
-                resultActions.andReturn().getResponse().getContentAsString(), true);
     }
 
     @Test
     public void deleteById() throws Exception {
-        RepairOrder newRepairOrder = new ObjectMapper()
+        RepairOrder newRepairOrder = objectMapper
                 .readValue(loadTestFile("json/newOrder.json"), RepairOrder.class);
 
         RepairOrder addRepairOrder = repairOrderService.add(newRepairOrder);
-
-        int sizeBeforeDelete = repairOrderService.findAll().size();
 
         mockMvc.perform(MockMvcRequestBuilders
                 .delete("/order/{repairOrderId}", addRepairOrder.getRepairOrderId()))
                 .andExpect(status().isOk());
 
-        int sizeAfterDelete = repairOrderService.findAll().size();
-
-        assertEquals(sizeBeforeDelete - 1, sizeAfterDelete);
         assertThrows(RuntimeException.class, () -> repairOrderService.findById(REPAIR_ORDER_ID_3));
     }
 }

@@ -1,28 +1,55 @@
-[
-  {
-    "addressId": 1,
-    "houseNumber": "17",
-    "apartmentNumber": "41",
-    "city": {
-      "cityId": 1,
-      "cityName": "Brest"
+{
+  "content": [
+    {
+      "addressId": 1,
+      "houseNumber": "17",
+      "apartmentNumber": "41",
+      "city": {
+        "cityId": 1,
+        "cityName": "Brest"
+      },
+      "street": {
+        "streetId": 1,
+        "streetName": "pereulok Brestskikh Diviziy"
+      }
     },
-    "street": {
-      "streetId": 1,
-      "streetName": "pereulok Brestskikh Diviziy"
+    {
+      "addressId": 2,
+      "houseNumber": "8",
+      "apartmentNumber": "0",
+      "city": {
+        "cityId": 1,
+        "cityName": "Brest"
+      },
+      "street": {
+        "streetId": 2,
+        "streetName": "pereulok Vilenskiy 2nd"
+      }
     }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": false,
+      "unsorted": true,
+      "empty": true
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 2,
+    "paged": true,
+    "unpaged": false
   },
-  {
-    "addressId": 2,
-    "houseNumber": "8",
-    "apartmentNumber": "0",
-    "city": {
-      "cityId": 1,
-      "cityName": "Brest"
-    },
-    "street": {
-      "streetId": 2,
-      "streetName": "pereulok Vilenskiy 2nd"
-    }
-  }
-]
+  "totalPages": 1,
+  "totalElements": 2,
+  "last": true,
+  "number": 0,
+  "sort": {
+    "sorted": false,
+    "unsorted": true,
+    "empty": true
+  },
+  "size": 2,
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
+}

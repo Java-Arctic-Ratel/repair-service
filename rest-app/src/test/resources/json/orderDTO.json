@@ -1,74 +1,101 @@
-[
-  {
-    "repairOrderId": 1,
-    "repairOrderStartDate": "2019-10-12",
-    "repairOrderEndDate": "2019-10-22",
-    "repairOrderCostEstimated": 100,
-    "client": {
-      "clientPhoneNumber": "+37533033120",
-      "firstName": "First name 1",
-      "lastName": "Last Name 1"
-    },
-    "device": {
-      "deviceIMEIOrSn": "37533033120",
-      "devicePassword": "37533033120",
-      "type": {
-        "typeName": "smartphone"
+{
+  "content": [
+    {
+      "repairOrderId": 1,
+      "repairOrderStartDate": "2019-10-12",
+      "repairOrderEndDate": "2019-10-22",
+      "repairOrderCostEstimated": 100,
+      "client": {
+        "clientPhoneNumber": "+37533033120",
+        "firstName": "First name 1",
+        "lastName": "Last Name 1"
       },
-      "model": {
-        "modelName": "p-smart"
+      "device": {
+        "deviceIMEIOrSn": "37533033120",
+        "devicePassword": "37533033120",
+        "type": {
+          "typeName": "smartphone"
+        },
+        "model": {
+          "modelName": "p-smart"
+        },
+        "brand": {
+          "brandName": "Huawei"
+        },
+        "appearance": {
+          "appearanceName": "scratches"
+        },
+        "complectation": {
+          "complectationName": "SIM card"
+        },
+        "defect": {
+          "defectName": "not charging"
+        }
       },
-      "brand": {
-        "brandName": "Huawei"
-      },
-      "appearance": {
-        "appearanceName": "scratches"
-      },
-      "complectation": {
-        "complectationName": "SIM card"
-      },
-      "defect": {
-        "defectName": "not charging"
+      "status": {
+        "statusName": "In work"
       }
     },
-    "status": {
-      "statusName": "In work"
+    {
+      "repairOrderId": 2,
+      "repairOrderStartDate": "2019-10-12",
+      "repairOrderEndDate": "2019-10-25",
+      "repairOrderCostEstimated": 110,
+      "client": {
+        "clientPhoneNumber": "+375297232037",
+        "firstName": "First name 2",
+        "lastName": "Last Name 2"
+      },
+      "device": {
+        "deviceIMEIOrSn": "375297232037",
+        "devicePassword": "375297232037",
+        "type": {
+          "typeName": "smartphone"
+        },
+        "model": {
+          "modelName": "xperia xz1"
+        },
+        "brand": {
+          "brandName": "Sony"
+        },
+        "appearance": {
+          "appearanceName": "scuffed"
+        },
+        "complectation": {
+          "complectationName": "case"
+        },
+        "defect": {
+          "defectName": "does not catch the network"
+        }
+      },
+      "status": {
+        "statusName": "Waiting for a spare part"
+      }
     }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": false,
+      "unsorted": true,
+      "empty": true
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 2,
+    "paged": true,
+    "unpaged": false
   },
-  {
-    "repairOrderId": 2,
-    "repairOrderStartDate": "2019-10-12",
-    "repairOrderEndDate": "2019-10-25",
-    "repairOrderCostEstimated": 110,
-    "client": {
-      "clientPhoneNumber": "+375297232037",
-      "firstName": "First name 2",
-      "lastName": "Last Name 2"
-    },
-    "device": {
-      "deviceIMEIOrSn": "375297232037",
-      "devicePassword": "375297232037",
-      "type": {
-        "typeName": "smartphone"
-      },
-      "model": {
-        "modelName": "xperia xz1"
-      },
-      "brand": {
-        "brandName": "Sony"
-      },
-      "appearance": {
-        "appearanceName": "scuffed"
-      },
-      "complectation": {
-        "complectationName": "case"
-      },
-      "defect": {
-        "defectName": "does not catch the network"
-      }
-    },
-    "status": {
-      "statusName": "Waiting for a spare part"
-    }
-  }
-]
+  "totalPages": 1,
+  "totalElements": 2,
+  "last": true,
+  "number": 0,
+  "sort": {
+    "sorted": false,
+    "unsorted": true,
+    "empty": true
+  },
+  "size": 2,
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
+}
