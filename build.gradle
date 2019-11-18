@@ -22,6 +22,12 @@ buildscript {
     }
 }
 
+    buildScan {
+        termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+        termsOfServiceAgree = 'yes'
+    }
+
+
 allprojects {
     group projectGroupName
     version projectVersion
