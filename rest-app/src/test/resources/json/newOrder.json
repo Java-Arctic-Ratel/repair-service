@@ -1,4 +1,7 @@
 {
+  "repairOrderStartDate": "2000-10-10",
+  "repairOrderEndDate": "2000-10-20",
+  "repairOrderIssueDate": "2000-10-15",
   "repairOrderCostEstimated": 0.00,
   "repairOrderCostTotal": 0.00,
   "client": {

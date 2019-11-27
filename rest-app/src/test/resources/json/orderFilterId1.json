@@ -1,0 +1,65 @@
+{
+  "content": [
+    {
+      "repairOrderId": 1,
+      "repairOrderStartDate": "2019-10-12",
+      "repairOrderEndDate": "2019-10-22",
+      "repairOrderCostEstimated": 100,
+      "client": {
+        "clientPhoneNumber": "+37533033120",
+        "firstName": "First name 1",
+        "lastName": "Last Name 1"
+      },
+      "device": {
+        "deviceIMEIOrSn": "37533033120",
+        "devicePassword": "37533033120",
+        "type": {
+          "typeName": "smartphone"
+        },
+        "model": {
+          "modelName": "p-smart"
+        },
+        "brand": {
+          "brandName": "Huawei"
+        },
+        "appearance": {
+          "appearanceName": "scratches"
+        },
+        "complectation": {
+          "complectationName": "SIM card"
+        },
+        "defect": {
+          "defectName": "not charging"
+        }
+      },
+      "status": {
+        "statusName": "In work"
+      }
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": false,
+      "unsorted": true,
+      "empty": true
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 2,
+    "paged": true,
+    "unpaged": false
+  },
+  "totalPages": 1,
+  "totalElements": 1,
+  "last": true,
+  "number": 0,
+  "sort": {
+    "sorted": false,
+    "unsorted": true,
+    "empty": true
+  },
+  "size": 2,
+  "first": true,
+  "numberOfElements": 1,
+  "empty": false
+}
