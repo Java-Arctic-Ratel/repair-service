@@ -1,14 +1,16 @@
 package com.epam.repair.dao;
 
+import com.epam.repair.config.TestConfig;
 import com.epam.repair.model.RepairOrder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -17,13 +19,17 @@ import java.util.List;
 import static com.epam.repair.utils.TestUtils.loadTestFile;
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TestConfig.class)
 @DataJpaTest
+@EnableAutoConfiguration
 @TestPropertySource("classpath:application-test.properties")
 class RepairOrderDaoTest {
-
     public static final Integer Order_ID_1 = 1;
+    private Integer PAGE_0 = 0;
+    private Integer SIZE_2 = 2;
+    private LocalDate START_DATE = LocalDate.of(2019, 10, 10);
+    private LocalDate END_DATE = LocalDate.of(2019, 10, 13);
+    private LocalDate ISSUE_DATE = LocalDate.of(2019, 10, 13);
 
     @Autowired
     private RepairOrderDao repairOrderDao;
@@ -49,14 +55,10 @@ class RepairOrderDaoTest {
 
     @Test
     public void save() throws IOException {
-        LocalDate orderStartDate = LocalDate.of(2020, 10, 20);
-        LocalDate orderEndDate = LocalDate.of(2030, 10, 30);
-        LocalDate orderIssueDate = LocalDate.of(2030, 10, 25);
-
         RepairOrder newRepairOrder = objectMapper.readValue(loadTestFile("json/order.json"), RepairOrder.class);
-        newRepairOrder.setRepairOrderStartDate(orderStartDate);
-        newRepairOrder.setRepairOrderEndDate(orderEndDate);
-        newRepairOrder.setRepairOrderIssueDate(orderIssueDate);
+        newRepairOrder.setRepairOrderStartDate(START_DATE);
+        newRepairOrder.setRepairOrderEndDate(END_DATE);
+        newRepairOrder.setRepairOrderIssueDate(ISSUE_DATE);
         RepairOrder addRepairOrder = repairOrderDao.save(newRepairOrder);
 
         assertNotNull(addRepairOrder);
@@ -65,17 +67,13 @@ class RepairOrderDaoTest {
 
     @Test
     public void update() throws IOException {
-        LocalDate orderStartDate = LocalDate.of(2020, 10, 20);
-        LocalDate orderEndDate = LocalDate.of(2030, 10, 30);
-        LocalDate orderIssueDate = LocalDate.of(2030, 10, 25);
-
         RepairOrder testRepairOrder = repairOrderDao.findById(Order_ID_1).get();
 
         RepairOrder newRepairOrder = objectMapper.readValue(loadTestFile("json/order.json"), RepairOrder.class);
 
-        testRepairOrder.setRepairOrderStartDate(orderStartDate);
-        testRepairOrder.setRepairOrderEndDate(orderEndDate);
-        testRepairOrder.setRepairOrderIssueDate(orderIssueDate);
+        testRepairOrder.setRepairOrderStartDate(START_DATE);
+        testRepairOrder.setRepairOrderEndDate(END_DATE);
+        testRepairOrder.setRepairOrderIssueDate(ISSUE_DATE);
 
         testRepairOrder.setClient(newRepairOrder.getClient());
         testRepairOrder.setDevice(newRepairOrder.getDevice());
@@ -88,14 +86,10 @@ class RepairOrderDaoTest {
 
     @Test
     public void deleteById() throws IOException {
-        LocalDate orderStartDate = LocalDate.of(2020, 10, 20);
-        LocalDate orderEndDate = LocalDate.of(2030, 10, 30);
-        LocalDate orderIssueDate = LocalDate.of(2030, 10, 25);
-
         RepairOrder newRepairOrder = objectMapper.readValue(loadTestFile("json/order.json"), RepairOrder.class);
-        newRepairOrder.setRepairOrderStartDate(orderStartDate);
-        newRepairOrder.setRepairOrderEndDate(orderEndDate);
-        newRepairOrder.setRepairOrderIssueDate(orderIssueDate);
+        newRepairOrder.setRepairOrderStartDate(START_DATE);
+        newRepairOrder.setRepairOrderEndDate(END_DATE);
+        newRepairOrder.setRepairOrderIssueDate(ISSUE_DATE);
 
         repairOrderDao.save(newRepairOrder);
         int sizeBeforeDelete = repairOrderDao.findAll().size();
@@ -105,5 +99,76 @@ class RepairOrderDaoTest {
 
         assertEquals(sizeBeforeDelete - 1, sizeAfterDelete);
         assertTrue(repairOrderDao.findById(newRepairOrder.getRepairOrderId()).isEmpty());
+    }
+
+    @Test
+    public void findRepairOrderByClient_FirstNameContainingAndClient_LastNameContainingAndClient_clientPhoneNumberContainingAndDevice_BrandContainingAndDevice_ModelContainingAllIgnoreCase() {
+        Page<RepairOrder> repairOrders = repairOrderDao
+                .findRepairOrderByClient_FirstNameContainingAndClient_LastNameContainingAndClient_clientPhoneNumberContainingAndDevice_BrandContainingAndDevice_ModelContainingAllIgnoreCase(
+                        PageRequest.of(0, 2), "", "", "723", "", "");
+
+        assertTrue(repairOrders.getContent().size() > 0);
+
+    }
+
+    @Test
+    public void findByRepairOrderStartDateBetween() {
+        Page<RepairOrder> repairOrders = repairOrderDao.findByRepairOrderStartDateBetween(PageRequest.of(PAGE_0, SIZE_2), START_DATE, END_DATE);
+
+        assertTrue(repairOrders.getContent().size() > 0);
+    }
+
+
+    @Test
+    public void findRepairOrderByClient_FirstNameContainingAndClient_LastNameContainingAndClient_clientPhoneNumberContainingAndDevice_BrandContainingAndDevice_ModelContainingAndRepairOrderStartDateBetweenAllIgnoreCase() {
+        Page<RepairOrder> repairOrders = repairOrderDao
+                .findRepairOrderByClient_FirstNameContainingAndClient_LastNameContainingAndClient_clientPhoneNumberContainingAndDevice_BrandContainingAndDevice_ModelContainingAndRepairOrderStartDateBetweenAllIgnoreCase(
+                        PageRequest.of(0, 2), "2", "2", "723", "", "", START_DATE, END_DATE);
+
+        assertTrue(repairOrders.getContent().size() > 0);
+    }
+
+    @Test
+    public void filterByFirstNameAndLastNameAndPhoneNumberAndBrandAndModelJPQL() {
+        Page<RepairOrder> repairOrders = repairOrderDao.
+                filterByFirstNameAndLastNameAndPhoneNumberAndBrandAndModelJPQL(PageRequest.of(PAGE_0, SIZE_2),
+                        "", "", null, "AW", "p");
+        assertTrue(repairOrders.getContent().size() > 0);
+    }
+
+    @Test
+    public void filterByStartDateJPQL() {
+        Page<RepairOrder> repairOrders = repairOrderDao.filterByStartDateJPQL(PageRequest.of(PAGE_0, SIZE_2), null, END_DATE);
+
+        assertTrue(repairOrders.getContent().size() > 0);
+    }
+
+    @Test
+    public void filterByFirstNameAndLastNameAndPhoneNumberAndBrandAndModelAndDateJPQL() {
+        Page<RepairOrder> repairOrders = repairOrderDao.
+                filterByFirstNameAndLastNameAndPhoneNumberAndBrandAndModelAndDateJPQL(PageRequest.of(PAGE_0, SIZE_2),
+                        null, "", "", "", "", START_DATE, null);
+        assertTrue(repairOrders.getContent().size() > 0);
+    }
+
+    @Test
+    public void filterByFirstNameAndLastNameAndPhoneNumberAndBrandAndModel() {
+        Page<RepairOrder> repairOrders = repairOrderDao.filterByFirstNameAndLastNameAndPhoneNumberAndBrandAndModel(PageRequest.of(PAGE_0, SIZE_2),
+                "1", "", "0", null, "p");
+        assertTrue(repairOrders.getContent().size() > 0);
+    }
+
+    @Test
+    public void filterByStartDate() {
+        Page<RepairOrder> repairOrders = repairOrderDao.filterByStartDate(PageRequest.of(PAGE_0, SIZE_2), null, END_DATE);
+
+        assertTrue(repairOrders.getContent().size() > 0);
+    }
+
+    @Test
+    public void filterByFirstNameAndLastNameAndPhoneNumberAndBrandAndModelAndDate() {
+        Page<RepairOrder> repairOrders = repairOrderDao.filterByFirstNameAndLastNameAndPhoneNumberAndBrandAndModelAndDate(PageRequest.of(PAGE_0, SIZE_2),
+                "1", "", "0", null, "p", START_DATE, null);
+        assertTrue(repairOrders.getContent().size() > 0);
     }
 }
