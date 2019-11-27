@@ -23,23 +23,23 @@ public class Address {
     @Column(name = "address_id", updatable = false, nullable = false)
     private Integer addressId;
 
-    @Column(name = "address_number_house", length = 40, nullable = true)
+    @Column(name = "address_number_house", length = 40, nullable = false)
     private String houseNumber;
 
-    @Column(name = "address_number_apartment", length = 40, nullable = true)
+    @Column(name = "address_number_apartment", length = 40, nullable = false)
     private String apartmentNumber;
 
     /**
      * City id is the foreign key (City to address).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "city_id")
     private City city;
 
     /**
      * Street id is the foreign key (Street to address).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "street_id")
     private Street street;
 

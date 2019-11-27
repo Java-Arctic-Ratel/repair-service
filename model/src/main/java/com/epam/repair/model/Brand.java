@@ -27,7 +27,7 @@ public class Brand {
     private String brandName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "brand", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

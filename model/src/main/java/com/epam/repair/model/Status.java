@@ -25,13 +25,11 @@ public class Status {
     @Column(name = "status_id", updatable = false, nullable = false)
     private Integer statusId;
 
-    @NotEmpty
-    @NotNull
     @Column(name = "status_name", length = 40, nullable = false)
     private String statusName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "status", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<RepairOrder> repairOrders;
 
     /**

@@ -23,11 +23,11 @@ public class Complectation {
     @Column(name = "complectation_id", updatable = false, nullable = false)
     private Integer complectationId;
 
-    @Column(name = "complectation_name", length = 40, nullable = true)
+    @Column(name = "complectation_name", length = 40, nullable = false)
     private String complectationName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "complectation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "complectation", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

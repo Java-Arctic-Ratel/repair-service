@@ -3,8 +3,6 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -25,58 +23,56 @@ public class Device {
     @Column(name = "device_id", updatable = false, nullable = false)
     private Integer deviceId;
 
-    @NotEmpty
-    @NotNull
     @Column(name = "device_imei_or_sn", length = 40, nullable = false)
     private String deviceIMEIOrSn;
 
-    @Column(name = "device_password", length = 40, nullable = true)
+    @Column(name = "device_password", length = 40, nullable = false)
     private String devicePassword;
 
     /**
      * Type id is the foreign key (Type to device).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "type_id")
     private Type type;
 
     /**
      * Model id is the foreign key (Model to device).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "model_id")
     private Model model;
 
     /**
      * Brand id is the foreign key (Brand to device).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
     /**
      * Appearance id is the foreign key (Appearance to device).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "appearance_id")
     private Appearance appearance;
 
     /**
      * Complectation id is the foreign key (Complectation to device).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "complectation_id")
     private Complectation complectation;
 
     /**
      * Defect id is the foreign key (Defect to device).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "defect_id")
     private Defect defect;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "device", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<RepairOrder> repairOrders;
 
     /**

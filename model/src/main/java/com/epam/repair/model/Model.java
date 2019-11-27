@@ -27,7 +27,7 @@ public class Model {
     private String modelName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "model", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

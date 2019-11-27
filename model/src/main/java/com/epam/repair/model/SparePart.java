@@ -3,6 +3,7 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -24,14 +25,14 @@ public class SparePart {
     @Column(name = "spare_part_id", updatable = false, nullable = false)
     private Integer sparePartId;
 
-    @Column(name = "spare_part_name", length = 40, nullable = true)
+    @Column(name = "spare_part_name", length = 40, nullable = false)
     private String sparePartName;
 
-    @Column(name = "spare_part_cost", nullable = true)
+    @Column(name = "spare_part_cost", nullable = false)
     private BigDecimal sparePartCost;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sparePart", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sparePart", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<RepairOrder> repairOrders;
 
     /**

@@ -23,11 +23,11 @@ public class City {
     @Column(name = "city_id", updatable = false, nullable = false)
     private Integer cityId;
 
-    @Column(name = "city_name", length = 40, nullable = true)
+    @Column(name = "city_name", length = 40, nullable = false)
     private String cityName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "city", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Address> address;
 
     /**

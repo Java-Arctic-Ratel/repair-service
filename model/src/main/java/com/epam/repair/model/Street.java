@@ -3,6 +3,7 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -23,11 +24,11 @@ public class Street {
     @Column(name = "street_id", updatable = false, nullable = false)
     private Integer streetId;
 
-    @Column(name = "street_name", length = 40, nullable = true)
+    @Column(name = "street_name", length = 40, nullable = false)
     private String streetName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "street", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "street", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Address> address;
 
 

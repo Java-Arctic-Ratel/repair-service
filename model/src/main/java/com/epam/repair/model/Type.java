@@ -25,13 +25,11 @@ public class Type {
     @Column(name = "type_id", updatable = false, nullable = false)
     private Integer typeId;
 
-    @NotEmpty
-    @NotNull
     @Column(name = "type_name", length = 40, nullable = false)
     private String typeName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "type", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

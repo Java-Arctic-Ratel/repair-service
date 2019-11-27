@@ -3,8 +3,6 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -25,25 +23,21 @@ public class Employee {
     @Column(name = "employee_id", updatable = false, nullable = false)
     private Integer employeeId;
 
-    @NotEmpty
-    @NotNull
     @Column(name = "employee_first_name", length = 40, nullable = false)
     private String firstName;
 
-    @NotEmpty
-    @NotNull
     @Column(name = "employee_last_name", length = 40, nullable = false)
     private String lastName;
 
     /**
      * Employee type id is the foreign key (Employee type to employee).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "employee_type_id")
     private EmployeeType employeeType;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<RepairOrder> repairOrders;
 
     /**

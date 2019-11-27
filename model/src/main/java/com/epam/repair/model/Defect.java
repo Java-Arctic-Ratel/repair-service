@@ -23,11 +23,11 @@ public class Defect {
     @Column(name = "defect_id", updatable = false, nullable = false)
     private Integer defectId;
 
-    @Column(name = "defect_name", length = 40, nullable = true)
+    @Column(name = "defect_name", length = 40, nullable = false)
     private String defectName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "defect", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "defect", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

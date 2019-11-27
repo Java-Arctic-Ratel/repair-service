@@ -1,6 +1,7 @@
 package com.epam.repair.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -40,35 +41,35 @@ public class RepairOrder {
     /**
      * Client id is the foreign key (Client to order).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "client_id")
     private Client client;
 
     /**
      * Device id is the foreign key (Device to order).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "device_id")
     private Device device;
 
     /**
      * Employee id is the foreign key (Executor to order).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
     /**
      * Spare parts id is the foreign key (Spare parts to order).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sparePart_id")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "spare_part_id")
     private SparePart sparePart;
 
     /**
      * Status id is the foreign key (Status to order).
      */
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "status_id")
     private Status status;
 

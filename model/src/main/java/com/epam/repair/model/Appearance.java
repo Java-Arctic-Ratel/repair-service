@@ -23,11 +23,11 @@ public class Appearance {
     @Column(name = "appearance_id", updatable = false, nullable = false)
     private Integer appearanceId;
 
-    @Column(name = "appearance_name", length = 40, nullable = true)
+    @Column(name = "appearance_name", length = 40, nullable = false)
     private String appearanceName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "appearance", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "appearance", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**
