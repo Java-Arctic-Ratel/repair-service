@@ -3,6 +3,10 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -13,7 +17,7 @@ import java.util.List;
 public class Employee {
 
     /**
-     * Device condition id is the primary key.
+     * Employee id is the primary key.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
@@ -23,15 +27,22 @@ public class Employee {
     @Column(name = "employee_id", updatable = false, nullable = false)
     private Integer employeeId;
 
+    @NotNull(message = "{employeeFirstName.null}")
+    @NotBlank(message = "{employeeFirstName.empty}")
+    @Size(max = 40, message = "{employeeFirstName.maxSize40}")
     @Column(name = "employee_first_name", length = 40, nullable = false)
     private String firstName;
 
+    @NotNull(message = "{employeeLastName.null}")
+    @NotBlank(message = "{employeeLastName.empty}")
+    @Size(max = 40, message = "{employeeLastName.maxSize40}")
     @Column(name = "employee_last_name", length = 40, nullable = false)
     private String lastName;
 
     /**
      * Employee type id is the foreign key (Employee type to employee).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "employee_type_id")
     private EmployeeType employeeType;

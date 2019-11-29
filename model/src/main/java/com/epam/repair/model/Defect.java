@@ -3,6 +3,9 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -23,6 +26,9 @@ public class Defect {
     @Column(name = "defect_id", updatable = false, nullable = false)
     private Integer defectId;
 
+    @NotNull(message = "{defectName.null}")
+    @NotBlank(message = "{defectName.empty}")
+    @Size(max = 40, message = "{defectName.maxSize40}")
     @Column(name = "defect_name", length = 40, nullable = false)
     private String defectName;
 

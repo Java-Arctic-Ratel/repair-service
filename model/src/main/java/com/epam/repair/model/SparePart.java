@@ -3,12 +3,12 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * The type SpareParts.
+ * The type spare part.
  */
 @Entity
 @Table(name = "spare_part")
@@ -25,9 +25,14 @@ public class SparePart {
     @Column(name = "spare_part_id", updatable = false, nullable = false)
     private Integer sparePartId;
 
+    @NotNull(message = "{sparePartName.null}")
+    @Size(max = 40, message = "{sparePartName.maxSize40}")
     @Column(name = "spare_part_name", length = 40, nullable = false)
     private String sparePartName;
 
+    @NotNull(message = "{sparePartCost.null}")
+    @DecimalMin(value = "0.0", message = "{sparePartCost.DecimalMin}")
+    @Digits(integer = 6, fraction = 2, message = "{sparePartCost.DecimalDigits}")
     @Column(name = "spare_part_cost", nullable = false)
     private BigDecimal sparePartCost;
 

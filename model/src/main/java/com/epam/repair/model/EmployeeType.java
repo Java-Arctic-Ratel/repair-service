@@ -3,6 +3,9 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -22,6 +25,9 @@ public class EmployeeType {
     @Column(name = "employee_type_id", updatable = false, nullable = false)
     private Integer employeeTypeId;
 
+    @NotNull(message = "{employeeTypeName.null}")
+    @NotBlank(message = "{employeeTypeName.empty}")
+    @Size(max = 40, message = "{employeeTypeName.maxSize40}")
     @Column(name = "employee_type_name", length = 40, nullable = false)
     private String employeeTypeName;
 

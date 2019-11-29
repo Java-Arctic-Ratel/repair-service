@@ -3,8 +3,9 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -25,6 +26,9 @@ public class Status {
     @Column(name = "status_id", updatable = false, nullable = false)
     private Integer statusId;
 
+    @NotNull(message = "{statusName.null}")
+    @NotBlank(message = "{statusName.empty}")
+    @Size(max = 40, message = "{statusName.maxSize40}")
     @Column(name = "status_name", length = 40, nullable = false)
     private String statusName;
 

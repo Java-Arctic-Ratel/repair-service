@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 /**
@@ -52,7 +53,8 @@ public class RepairOrderController {
      * @return the response entity
      */
     @PostMapping
-    public ResponseEntity<RepairOrder> add(@RequestBody RepairOrder repairOrder) {
+    public ResponseEntity<RepairOrder> add(@Valid
+                                           @RequestBody RepairOrder repairOrder) {
         RepairOrder result = repairOrderService.add(repairOrder);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
@@ -63,7 +65,8 @@ public class RepairOrderController {
      * @param repairOrder the repair order
      */
     @PutMapping
-    public void update(@RequestBody RepairOrder repairOrder) {
+    public void update(@Valid
+                       @RequestBody RepairOrder repairOrder) {
         repairOrderService.update(repairOrder);
     }
 

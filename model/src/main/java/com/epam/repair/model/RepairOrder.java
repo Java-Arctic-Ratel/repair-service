@@ -1,19 +1,22 @@
 package com.epam.repair.model;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * The type order.
+ * The type repair order.
  */
 @Entity
 @Table(name = "repair_order")
 public class RepairOrder {
 
     /**
-     * Order id is the primary key.
+     * Repair order id is the primary key.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
@@ -23,24 +26,33 @@ public class RepairOrder {
     @Column(name = "repair_order_id", updatable = false, nullable = false)
     private Integer repairOrderId;
 
-    @Column(name = "repair_order_start_date", nullable = true)
+    @NotNull(message = "{dateStart.null}")
+    @Column(name = "repair_order_start_date", nullable = false)
     private LocalDate repairOrderStartDate;
 
-    @Column(name = "repair_order_end_date", nullable = true)
+    @NotNull(message = "{dateEnd.null}")
+    @Column(name = "repair_order_end_date", nullable = false)
     private LocalDate repairOrderEndDate;
 
     @Column(name = "repair_order_issue_date", nullable = true)
     private LocalDate repairOrderIssueDate;
 
+    @NotNull(message = "{cost.null}")
+    @DecimalMin(value = "0.0", message = "{cost.DecimalMin}")
+    @Digits(integer = 6, fraction = 2, message = "{cost.DecimalDigits}")
     @Column(name = "repair_order_cost_estimated", nullable = false)
     private BigDecimal repairOrderCostEstimated;
 
+    @NotNull(message = "{cost.null}")
+    @DecimalMin(value = "0.0", message = "{cost.DecimalMin}")
+    @Digits(integer = 6, fraction = 2, message = "{cost.DecimalDigits}")
     @Column(name = "repair_order_cost_total", nullable = false)
     private BigDecimal repairOrderCostTotal;
 
     /**
      * Client id is the foreign key (Client to order).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "client_id")
     private Client client;
@@ -48,6 +60,7 @@ public class RepairOrder {
     /**
      * Device id is the foreign key (Device to order).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "device_id")
     private Device device;
@@ -55,6 +68,7 @@ public class RepairOrder {
     /**
      * Employee id is the foreign key (Executor to order).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "employee_id")
     private Employee employee;
@@ -62,6 +76,7 @@ public class RepairOrder {
     /**
      * Spare parts id is the foreign key (Spare parts to order).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "spare_part_id")
     private SparePart sparePart;
@@ -69,6 +84,7 @@ public class RepairOrder {
     /**
      * Status id is the foreign key (Status to order).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "status_id")
     private Status status;

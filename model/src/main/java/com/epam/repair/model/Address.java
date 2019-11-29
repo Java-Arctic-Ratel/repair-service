@@ -3,6 +3,10 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -23,15 +27,22 @@ public class Address {
     @Column(name = "address_id", updatable = false, nullable = false)
     private Integer addressId;
 
+    @NotNull(message = "{houseNumber.null}")
+    @NotBlank(message = "{houseNumber.empty}")
+    @Size(max = 40, message = "{houseNumber.maxSize40}")
     @Column(name = "address_number_house", length = 40, nullable = false)
     private String houseNumber;
 
+    @NotNull(message = "{apartmentNumber.null}")
+    @NotBlank(message = "{apartmentNumber.empty}")
+    @Size(max = 40, message = "{apartmentNumber.maxSize40}")
     @Column(name = "address_number_apartment", length = 40, nullable = false)
     private String apartmentNumber;
 
     /**
      * City id is the foreign key (City to address).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "city_id")
     private City city;
@@ -39,6 +50,7 @@ public class Address {
     /**
      * Street id is the foreign key (Street to address).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "street_id")
     private Street street;

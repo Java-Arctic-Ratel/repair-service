@@ -3,6 +3,9 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -24,18 +27,28 @@ public class Client {
     @Column(name = "client_id", updatable = false, nullable = false)
     private Integer clientId;
 
-    @Column(name = "client_phone_number", length = 40, nullable = false)
+    @NotNull(message = "{clientPhoneNumber.null}")
+    @NotBlank(message = "{clientPhoneNumber.empty}")
+    @Size(max = 13, message = "{clientPhoneNumber.maxSize13}")
+    @Column(name = "client_phone_number", length = 13, nullable = false)
     private String clientPhoneNumber;
 
+    @NotNull(message = "{clientFirstName.null}")
+    @NotBlank(message = "{clientFirstName.empty}")
+    @Size(max = 40, message = "{clientFirstName.maxSize40}")
     @Column(name = "client_first_name", length = 40, nullable = false)
     private String firstName;
 
+    @NotNull(message = "{clientLastName.null}")
+    @NotBlank(message = "{clientLastName.empty}")
+    @Size(max = 40, message = "{clientLastName.maxSize40}")
     @Column(name = "client_last_name", length = 40, nullable = false)
     private String lastName;
 
     /**
      * Address id is the foreign key (Address to client).
      */
+    @Valid
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "address_id")
     private Address address;

@@ -3,7 +3,9 @@ package com.epam.repair.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -24,6 +26,9 @@ public class Street {
     @Column(name = "street_id", updatable = false, nullable = false)
     private Integer streetId;
 
+    @NotNull(message = "{streetName.null}")
+    @NotBlank(message = "{streetName.empty}")
+    @Size(max = 40, message = "{streetName.maxSize40}")
     @Column(name = "street_name", length = 40, nullable = false)
     private String streetName;
 
