@@ -12,10 +12,12 @@ Application for accounting and business automation in the field of electronic eq
 - JDK11
 - Spring Boot 2
 - Gradle 5
-- Database:
+- Database for development environment:
   - H2 (in memory)
-  - PostgreSQL
-  - MySQL
+- Database for local development:
+  - MySQL 5
+- Database for production environment:
+  - PostgreSQL 10
 
 ## Installing
 To clone and run this application, you'll need:
@@ -27,18 +29,25 @@ To clone and run this application, you'll need:
         
       cd repair-service
 
-- Install dependencies - gradle clean build
-- Run applications with a database:
+- Build project
+
+      gradle clean build
+- Run applications with a database for development environment:
   - H2 (in memory): 
         
-        java -jar -Dspring.profiles.active=h2 ./rest-app/build/libs/rest-app-1.0-SNAPSHOT.jar
-  - [PostgreSQL](docs/postgresql.md): 
-  
-        java -jar -Dspring.profiles.active=postgresql ./rest-app/build/libs/rest-app-1.0-SNAPSHOT.jar
-  - [MySQL](docs/mysql.md): 
+        gradle bootRun --args='--spring.profiles.active=dev'
         
-        java -jar -Dspring.profiles.active=mysql ./rest-app/build/libs/rest-app-1.0-SNAPSHOT.jar
+- Run applications with a database for local development:      
+  - [MySQL](docs/mysql.md):       
+        
+        gradle bootRun --args='--spring.profiles.active=local'
+        
+- Run applications with a database for production environment:
+  - [PostgreSQL](docs/postresql.md): 
+
+        gradle bootRun --args='--spring.profiles.active=prod'
+
   - Open http://localhost:8090
 
-## Running tests
-./gradlew test
+## Running test
+    gradle test

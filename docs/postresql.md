@@ -1,23 +1,30 @@
 # Install and Use PostgreSQL 
 
-##Step 1 — Installing PostgreSQL
+## Step 1 — Installing PostgreSQL
+
     sudo apt-get update
-    sudo apt-get install postgresql postgresql-contrib
+    sudo apt-get install postgresql-10 postgresql-contrib
     
-##Step 2 — Using PostgreSQL Roles and Databases
+## Step 2 — Using PostgreSQL Roles and Databases
+
     sudo -u postgres psql
     
-##Step 3 — Creating a New Role  
-    create user user1 with password 'password123!';
+## Step 3 — Creating a New Role  
+
+    create user repair_admin with password 'repair123!';
     
-##Step 4 — Creating a New Database
-    create database database1;
+## Step 4 — Creating a New Database
+
+    create database repair_db;
     
-##Step 5 - Assignment of rights
-    grant all privileges on database database1 to user1;
+## Step 5 - Assignment of rights
+
+    grant all privileges on database repair_db to repair_admin;
     
-##Step 6 - Exit the interactive Postgres session by typing
+## Step 6 - Exit the interactive Postgres session by typing
+
     \q
     
-##Step 7 - Authentication and getting started with the database
-    psql -h localhost database1 user1
+## Step 7 - Authentication and getting started with the database
+
+    psql -h localhost repair_db repair_admin
