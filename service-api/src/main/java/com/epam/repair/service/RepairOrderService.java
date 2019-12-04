@@ -186,4 +186,9 @@ public interface RepairOrderService {
                                                                                            String lastName, String clientPhoneNumber,
                                                                                            String brandName, String modelName,
                                                                                            LocalDate startDate, LocalDate endDate);
+
+    /**
+     * Repair orders delete.
+     */
+    void deleteAll();
 }

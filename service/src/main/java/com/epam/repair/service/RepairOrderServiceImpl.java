@@ -149,4 +149,9 @@ public class RepairOrderServiceImpl implements RepairOrderService {
                 firstName, lastName, clientPhoneNumber, brandName, modelName, startDate, endDate);
         return repairOrders.map(repairOrder -> repairOrderMapper.repairOrderToOrderDTO(repairOrder));
     }
+
+    @Override
+    public void deleteAll() {
+        repairOrderDao.deleteAll();
+    }
 }

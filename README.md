@@ -46,8 +46,14 @@ To clone and run this application, you'll need:
   - [PostgreSQL](docs/postresql.md): 
 
         gradle bootRun --args='--spring.profiles.active=prod'
-
-  - Open http://localhost:8090
+  
+- Generate fake data and save it to DataBase:
+    - !!! All existing data will be deleted !!!
+    - $numberOfOrders - - quantity of necessary fake orders
+  
+          http://localhost:8090/faker/$numberOfOrders
+  
+- Open http://localhost:8090/order
 
 ## Running test
     gradle test

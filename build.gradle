@@ -10,6 +10,7 @@ buildscript {
         mysqlConnectorJavaVersion = '8.0.18'
         mapstructVersion = '1.3.0.Final'
         mapstructprocessorVersion = '1.3.0.Final'
+        javafakerVersion = '1.0.1'
     }
 
     repositories {
@@ -63,6 +64,7 @@ subprojects {
         compile "org.springframework.boot:spring-boot-starter-web-services"
         compile "com.h2database:h2"
         compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider"
+        compile "com.github.javafaker:javafaker:${javafakerVersion}"
         testCompile "org.springframework.boot:spring-boot-starter-test"
         testCompile "junit:junit"
 
