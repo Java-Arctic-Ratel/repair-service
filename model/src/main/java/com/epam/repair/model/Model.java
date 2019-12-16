@@ -33,7 +33,7 @@ public class Model {
     private String modelName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "model", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "model", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

@@ -33,7 +33,7 @@ public class City {
     private String cityName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "city", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "city", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Address> address;
 
     /**

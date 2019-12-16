@@ -85,7 +85,7 @@ public class RepairOrder {
      * Status id is the foreign key (Status to order).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "status_id")
     private Status status;
 

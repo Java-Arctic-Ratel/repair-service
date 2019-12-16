@@ -43,7 +43,7 @@ public class Address {
      * City id is the foreign key (City to address).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "city_id")
     private City city;
 
@@ -51,7 +51,7 @@ public class Address {
      * Street id is the foreign key (Street to address).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "street_id")
     private Street street;
 

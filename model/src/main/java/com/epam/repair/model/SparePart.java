@@ -37,7 +37,7 @@ public class SparePart {
     private BigDecimal sparePartCost;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sparePart", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "sparePart", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<RepairOrder> repairOrders;
 
     /**

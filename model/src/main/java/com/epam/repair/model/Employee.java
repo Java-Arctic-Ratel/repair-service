@@ -43,7 +43,7 @@ public class Employee {
      * Employee type id is the foreign key (Employee type to employee).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "employee_type_id")
     private EmployeeType employeeType;
 
