@@ -6,4 +6,6 @@ plugins {
 
 dependencies {
   compile project(':service')
+  testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+  testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
 }
