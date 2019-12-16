@@ -33,7 +33,7 @@ public class Type {
     private String typeName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "type", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "type", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

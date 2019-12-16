@@ -33,7 +33,7 @@ public class Complectation {
     private String complectationName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "complectation", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "complectation", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

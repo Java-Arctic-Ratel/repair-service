@@ -33,7 +33,7 @@ public class Status {
     private String statusName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "status", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "status", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<RepairOrder> repairOrders;
 
     /**

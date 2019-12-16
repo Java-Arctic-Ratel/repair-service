@@ -33,7 +33,7 @@ public class Brand {
     private String brandName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "brand", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "brand", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

@@ -32,7 +32,7 @@ public class EmployeeType {
     private String employeeTypeName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employeeType", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "employeeType", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Employee> employees;
 
     /**

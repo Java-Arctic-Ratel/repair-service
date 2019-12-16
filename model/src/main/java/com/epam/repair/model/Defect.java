@@ -33,7 +33,7 @@ public class Defect {
     private String defectName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "defect", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "defect", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Device> devices;
 
     /**

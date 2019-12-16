@@ -43,14 +43,14 @@ public class Device {
      * Type id is the foreign key (Type to device).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "type_id")
     private Type type;
 
     /**
      * Model id is the foreign key (Model to device).
      */
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "model_id")
     private Model model;
 
@@ -58,7 +58,7 @@ public class Device {
      * Brand id is the foreign key (Brand to device).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
@@ -66,7 +66,7 @@ public class Device {
      * Appearance id is the foreign key (Appearance to device).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "appearance_id")
     private Appearance appearance;
 
@@ -74,7 +74,7 @@ public class Device {
      * Complectation id is the foreign key (Complectation to device).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "complectation_id")
     private Complectation complectation;
 
@@ -82,7 +82,7 @@ public class Device {
      * Defect id is the foreign key (Defect to device).
      */
     @Valid
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "defect_id")
     private Defect defect;
 
