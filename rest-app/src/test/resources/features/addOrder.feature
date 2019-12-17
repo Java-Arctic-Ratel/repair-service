@@ -8,12 +8,12 @@ Feature: Add order
   Scenario: Validation. UNSUCCESSFULLY adding a new order
     Given A new client brought a device.
     When Add a new client and device.
-    Then Write the client first name "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".
+    Then Write the client firstName >= than 41 characters.
 
   Scenario: Validation. UNSUCCESSFULLY adding a new order
     Given A new client brought a device.
     When Add a new client and device.
-    Then Write the customer first name "".
+    Then Write the client firstName than 0 characters.
 
   Scenario: Validation. UNSUCCESSFULLY adding a new order
     Given A new client brought a device.

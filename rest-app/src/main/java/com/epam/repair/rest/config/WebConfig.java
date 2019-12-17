@@ -16,14 +16,8 @@ public class WebConfig implements WebMvcConfigurer {
     private String addMapping;
     @Value("${cors.allowedOrigins}")
     private String allowedOrigins;
-    @Value("${cors.allowedMethodsGet}")
-    private String allowedMethodsGet;
-    @Value("${cors.allowedMethodsPost}")
-    private String allowedMethodsPost;
-    @Value("${cors.allowedMethodsPut}")
-    private String allowedMethodsPut;
-    @Value("${cors.allowedMethodsDelete}")
-    private String allowedMethodsDelete;
+    @Value("${cors.allowedMethods}")
+    private String allowedMethods;
     @Value("${cors.allowedHeaders}")
     private String allowedHeaders;
     @Value("${cors.allowCredentials}")
@@ -35,7 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping(addMapping)
                 .allowedOrigins(allowedOrigins)
-                .allowedMethods(allowedMethodsGet, allowedMethodsPost, allowedMethodsPut, allowedMethodsDelete)
+                .allowedMethods(allowedMethods.split(","))
                 .allowedHeaders(allowedHeaders)
                 .allowCredentials(allowCredentials)
                 .maxAge(maxAge);
