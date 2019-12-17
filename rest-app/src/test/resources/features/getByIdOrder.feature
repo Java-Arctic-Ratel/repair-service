@@ -6,4 +6,4 @@ Feature: Get Order
 
   Scenario: UNSUCCESSFULLY GET BY ID
     Given User wants to get order
-    Then But it is not in the database. The get by id 'IS UNSUCCESSFUL'
+    Then But ID = 1000 no in the database. The get by id 'IS UNSUCCESSFUL'
