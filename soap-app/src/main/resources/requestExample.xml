@@ -1,0 +1,12 @@
+<!--default URL http://localhost:8090/ws-->
+
+<?xml version="1.0"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:rep="http://localhost/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <rep:getRepairOrderByIdRequest>
+            <rep:repairOrderId>33</rep:repairOrderId>
+        </rep:getRepairOrderByIdRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

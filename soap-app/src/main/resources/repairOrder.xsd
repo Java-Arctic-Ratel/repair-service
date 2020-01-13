@@ -1,0 +1,158 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://localhost/"
+           targetNamespace="http://localhost/"
+           elementFormDefault="qualified">
+
+    <xs:element name="getRepairOrderByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="repairOrderId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="getRepairOrderByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="repairOrder" type="tns:repairOrder"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="repairOrder">
+        <xs:sequence>
+            <xs:element name="repairOrderId" type="xs:int"/>
+            <xs:element name="repairOrderStartDate" type="xs:date"/>
+            <xs:element name="repairOrderEndDate" type="xs:date"/>
+            <xs:element name="repairOrderCostEstimated" type="xs:decimal"/>
+            <xs:element name="repairOrderCostTotal" type="xs:decimal"/>
+            <xs:element name="client" type="tns:client"/>
+            <xs:element name="device" type="tns:device"/>
+            <xs:element name="employee" type="tns:employee"/>
+            <xs:element name="sparePart" type="tns:sparePart"/>
+            <xs:element name="status" type="tns:status"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="client">
+        <xs:sequence>
+            <xs:element name="clientId" type="xs:int"/>
+            <xs:element name="clientPhoneNumber" type="xs:string"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="address" type="tns:address"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="address">
+        <xs:sequence>
+            <xs:element name="addressId" type="xs:int"/>
+            <xs:element name="houseNumber" type="xs:string"/>
+            <xs:element name="apartmentNumber" type="xs:string"/>
+            <xs:element name="city" type="tns:city"/>
+            <xs:element name="street" type="tns:street"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="city">
+        <xs:sequence>
+            <xs:element name="cityId" type="xs:int"/>
+            <xs:element name="cityName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="street">
+        <xs:sequence>
+            <xs:element name="streetId" type="xs:int"/>
+            <xs:element name="streetName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="device">
+        <xs:sequence>
+            <xs:element name="deviceId" type="xs:int"/>
+            <xs:element name="deviceIMEIOrSn" type="xs:string"/>
+            <xs:element name="devicePassword" type="xs:string"/>
+            <xs:element name="type" type="tns:type"/>
+            <xs:element name="model" type="tns:model"/>
+            <xs:element name="brand" type="tns:brand"/>
+            <xs:element name="appearance" type="tns:appearance"/>
+            <xs:element name="complectation" type="tns:complectation"/>
+            <xs:element name="defect" type="tns:defect"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="type">
+        <xs:sequence>
+            <xs:element name="typeId" type="xs:int"/>
+            <xs:element name="typeName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="model">
+        <xs:sequence>
+            <xs:element name="modelId" type="xs:int"/>
+            <xs:element name="modelName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="brand">
+        <xs:sequence>
+            <xs:element name="brandId" type="xs:int"/>
+            <xs:element name="brandName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="appearance">
+        <xs:sequence>
+            <xs:element name="appearanceId" type="xs:int"/>
+            <xs:element name="appearanceName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="complectation">
+        <xs:sequence>
+            <xs:element name="complectationId" type="xs:int"/>
+            <xs:element name="complectationName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="defect">
+        <xs:sequence>
+            <xs:element name="defectId" type="xs:int"/>
+            <xs:element name="defectName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="employee">
+        <xs:sequence>
+            <xs:element name="employeeId" type="xs:int"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="employeeType" type="tns:employeeType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="employeeType">
+        <xs:sequence>
+            <xs:element name="employeeTypeId" type="xs:int"/>
+            <xs:element name="employeeTypeName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="sparePart">
+        <xs:sequence>
+            <xs:element name="sparePartId" type="xs:int"/>
+            <xs:element name="sparePartName" type="xs:string"/>
+            <xs:element name="sparePartCost" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="status">
+        <xs:sequence>
+            <xs:element name="statusId" type="xs:int"/>
+            <xs:element name="statusName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
