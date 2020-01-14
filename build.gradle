@@ -12,6 +12,8 @@ buildscript {
         mapstructprocessorVersion = '1.3.0.Final'
         javafakerVersion = '1.0.1'
         cucumberVersion = '4.8.0'
+        wsdl4jVersion = '1.6.1'
+        jaxbVersion = '2.2.11'
     }
 
     repositories {
@@ -28,7 +30,6 @@ buildscript {
         termsOfServiceUrl = 'https://gradle.com/terms-of-service'
         termsOfServiceAgree = 'yes'
     }
-
 
 allprojects {
     group projectGroupName

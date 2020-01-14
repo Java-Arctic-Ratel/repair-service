@@ -1,6 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://localhost/"
-           targetNamespace="http://localhost/"
+           xmlns:tns="http://epam.com/repairorder/"
+           targetNamespace="http://epam.com/repairorder/"
            elementFormDefault="qualified">
 
     <xs:element name="getRepairOrderByIdRequest">

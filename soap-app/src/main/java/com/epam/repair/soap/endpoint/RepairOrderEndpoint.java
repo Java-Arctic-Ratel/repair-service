@@ -2,9 +2,7 @@ package com.epam.repair.soap.endpoint;
 
 import com.epam.repair.service.RepairOrderService;
 import com.epam.repair.soap.converter.ModelConverter;
-import localhost.GetRepairOrderByIdRequest;
-import localhost.GetRepairOrderByIdResponse;
-import localhost.RepairOrder;
+import com.epam.repairorder.*;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -21,12 +19,10 @@ public class RepairOrderEndpoint {
         this.modelConverter = modelConverter;
     }
 
-    @PayloadRoot(namespace = "http://localhost/", localPart = "getRepairOrderByIdRequest")
+    @PayloadRoot(namespace = "http://epam.com/repairorder/", localPart = "getRepairOrderByIdRequest")
     @ResponsePayload
     public GetRepairOrderByIdResponse getRepairOrderByIdResponse(@RequestPayload GetRepairOrderByIdRequest request) {
         GetRepairOrderByIdResponse response = new GetRepairOrderByIdResponse();
-
-//        response.setRepairOrder(repairOrderService.findById(request.getRepairOrderId()));
         RepairOrder repairOrder = modelConverter.convertToCategoryForSoap(repairOrderService.findById(request.getRepairOrderId()));
         response.setRepairOrder(repairOrder);
         return response;

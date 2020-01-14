@@ -37,16 +37,10 @@ task genJaxb {
         }
     }
 }
-task copyApp(type: Copy){
-    from file("$buildDir/libs/soap-1.0-SNAPSHOT.jar")
-    into file("$buildDir/../../dockerFiles/app/")
-}
-
-build.finalizedBy(copyApp)
 
 dependencies {
     compile project(":service")
-    compile("wsdl4j:wsdl4j:1.6.1")
-    jaxb("org.glassfish.jaxb:jaxb-xjc:2.2.11")
+    compile("wsdl4j:wsdl4j:${wsdl4jVersion}")
+    jaxb("org.glassfish.jaxb:jaxb-xjc:${jaxbVersion}")
     compile(files(genJaxb.classesDir).builtBy(genJaxb))
 }

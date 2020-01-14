@@ -1,6 +1,6 @@
 package com.epam.repair.soap.converter;
 
-import localhost.*;
+import com.epam.repairorder.*;
 import org.springframework.stereotype.Component;
 
 import javax.xml.datatype.DatatypeFactory;
