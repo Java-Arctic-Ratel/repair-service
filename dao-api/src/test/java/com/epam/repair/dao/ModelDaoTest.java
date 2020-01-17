@@ -1,6 +1,6 @@
 package com.epam.repair.dao;
 
-import com.epam.repair.config.TestConfig;
+import com.epam.repair.app.config.TestConfig;
 import com.epam.repair.model.Model;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

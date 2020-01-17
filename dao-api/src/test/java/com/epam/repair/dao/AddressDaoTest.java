@@ -1,6 +1,6 @@
 package com.epam.repair.dao;
 
-import com.epam.repair.config.TestConfig;
+import com.epam.repair.app.config.TestConfig;
 import com.epam.repair.model.Address;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import org.springframework.test.context.TestPropertySource;
 import java.io.IOException;
 import java.util.List;
 
-import static com.epam.repair.utils.TestUtils.loadTestFile;
+import static com.epam.repair.app.utils.TestUtils.loadTestFile;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ContextConfiguration(classes = TestConfig.class)

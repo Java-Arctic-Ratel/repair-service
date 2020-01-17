@@ -3,11 +3,13 @@ package com.epam.repair.soap.endpoint;
 import com.epam.repair.service.RepairOrderService;
 import com.epam.repair.soap.converter.ModelConverter;
 import com.epam.repairorder.*;
+import org.springframework.context.annotation.Profile;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+@Profile({"!rest", "soap"})
 @Endpoint
 public class RepairOrderEndpoint {
 

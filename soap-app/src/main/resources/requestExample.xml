@@ -2,7 +2,7 @@
 
 <?xml version="1.0"?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                  xmlns:rep="http://localhost/">
+                  xmlns:rep="http://epam.com/repairorder/">
     <soapenv:Header/>
     <soapenv:Body>
         <rep:getRepairOrderByIdRequest>

@@ -44,3 +44,4 @@ dependencies {
     jaxb("org.glassfish.jaxb:jaxb-xjc:${jaxbVersion}")
     compile(files(genJaxb.classesDir).builtBy(genJaxb))
 }
+
