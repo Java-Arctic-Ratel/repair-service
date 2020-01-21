@@ -64,6 +64,8 @@ subprojects {
         compile "org.springframework.boot:spring-boot-starter-thymeleaf"
         compile "org.springframework.boot:spring-boot-starter-web"
         compile "org.springframework.boot:spring-boot-starter-web-services"
+        compile "org.springframework.boot:spring-boot-starter-mail"
+        compile "org.springframework.boot:spring-boot-starter-freemarker"
         compile "com.h2database:h2"
         compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider"
         compile "com.github.javafaker:javafaker:${javafakerVersion}"
